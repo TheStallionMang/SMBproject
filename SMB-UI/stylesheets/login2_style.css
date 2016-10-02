@@ -1,0 +1,14 @@
+.navbar {
+	text-align: center;
+}
+
+.navbar-text {
+	/*border: 1px solid red;*/
+	margin-left: 400px;
+}
+
+form {
+	/*border: 1px solid red;*/
+	margin: auto;
+	width: 300px;
+}

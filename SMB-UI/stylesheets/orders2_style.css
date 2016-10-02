@@ -1,0 +1,16 @@
+.container {
+	/*background-color: #7d4427;*/
+}
+
+.page-header {
+	/*border: 1px solid red;*/
+	border: 0;
+	background-color: #2e4600;
+	color: white;
+	
+}
+
+.header_option {
+	border: 1px solid red;
+	
+}

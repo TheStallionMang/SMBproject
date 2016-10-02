@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+	<head>
+		<title>SMB | John Smith</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="stylesheets/vendor_detail_style.css">
+	</head>
+	<body ng-app="SMBapp">
+		<div class="container" ng-controller="mainController">
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="orders2.html">All Orders</a></li>
+									<li><a href="new_order.html">New Order</a></li>
+								</ul>
+							</li>
+							<li><a href="inventory.html">Inventory</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome, John Smith<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="account_detail.html">Account</a></li>
+									<li><a href="#">Settings</a></li>
+									<li><a href="#">Sign Out</a></li>
+								</ul>
+							</li>
+						</ul>
+						<form class="navbar-form navbar-right" role="search">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="search">
+							</div>
+							<button type="submit" class="bn btn-default">Submit</button>
+						</form>
+					</div>
+				</div>
+			</nav>
+			
+			<img src="images/santa-cruz-logo.jpeg" alt="..." height="250px" width="250px">
+			<div class="container-fluid pull-right">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">Vendor Description:</h4>
+					</div>
+					<div class="panel-body">
+						Integer blandit velit at tellus feugiat egestas. Vestibulum sit amet feugiat erat. Etiam egestas nulla eu erat sagittis, vel vestibulum nibh posuere. Sed eget varius nunc. Proin quis tellus at libero tincidunt porta sed eu urna. Duis semper blandit diam, non aliquet purus. Integer non tellus et tortor venenatis eleifend eget ac massa. Etiam ullamcorper mauris ante, non tempus ipsum viverra eu. Quisque vel mauris dictum, hendrerit urna consequat, luctus sem. Quisque sit amet nibh euismod mauris sagittis molestie. Etiam non quam sollicitudin, facilisis ante a, vestibulum leo. Nulla eleifend et arcu eget tincidunt. Sed quis fringilla leo. Vestibulum molestie purus ut sapien blandit sagittis. 
+					</div>
+					<table class="table">
+						<tr>
+							<th>Vendor</th>
+							<th>Product</th>
+							<th>Quantity</th>
+							<th>Price</th>
+							<th>Employee</th>
+						</tr>
+						<tr>
+							<th>Santa Cruz</th>
+							<th><a href="inventory_detail.html">Example Mountain Bike</a></th>
+							<th>10</th>
+							<th>$10.00</th>
+							<th>Smith</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="javascripts/script.js"></script>
+	</body>
+</html>
