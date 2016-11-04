@@ -4,8 +4,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var mongodb = require('mongodb');
+var mongoose = require('mongoose');
+var dbConfig = require('./db');
+mongoose.connect(dbConfig.url);
 
 var routes = require('./routes/index');
+var inv = require('./routes/inv');
 
 var app = express();
 
@@ -22,6 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/inv', inv);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

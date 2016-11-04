@@ -2,29 +2,58 @@ var app= angular.module('smbApp', ['ngRoute']);
 
 app.config(function($routeProvider) {
 	$routeProvider
+	// Loading partials
 
+	// Homepage
 	.when('/', {
 		templateUrl: 'home.html',
 		controller: 'mainController'
 	})
-
+	// Vendor Orders
 	.when('/orders', {
-		templateUrl: 'vendororder.html',
+		templateUrl: 'vendorOrder.html',
 		controller: 'mainController'
 	})
 
-	.when('/cont', {
-		templateUrl: 'contact.html',
-		controller: 'mainController'
-	})
-
+	// Inventory
 	.when('/inv', {
 		templateUrl: 'inventory.html',
 		controller: 'mainController'
 	})
 
-	.when('/addinv', {
+	// Contact Page from home page(***Footer on every page?***)
+	.when('/cont', {
+		templateUrl: 'contact.html',
+		controller: 'mainController'
+	})
+
+	// Add an Item to the Inventory
+	.when('/add-inv', {
 		templateUrl: 'addInv.html',
+		controller: 'mainController'
+	})
+
+	// Login
+	.when('/login', {
+		templateUrl: 'login.html',
+		controller: 'mainController'
+	})
+
+	// Register
+	.when('/register', {
+		templateUrl: 'register.html',
+		controller: 'mainController'
+	})
+
+	// Dashboard
+	.when('/dash', {
+		templateUrl: 'dashboard.html',
+		controller: 'mainController'
+	})
+
+	// Place an Order
+	.when('/order-form', {
+		templateUrl: 'orderForm.html',
 		controller: 'mainController'
 	});
 });
