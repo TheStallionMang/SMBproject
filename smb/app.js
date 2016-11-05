@@ -34,6 +34,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 
+////initialize passport
+var initPassport = require('./passport-init');
+initPassport(passport);
+
 app.use('/', routes);
 app.use('/inv', inv);
 
