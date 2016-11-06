@@ -1,4 +1,4 @@
-var localStrategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var bCrypt = require('bcrypt-nodejs');
 //temporary data store
 var users = {};
@@ -15,12 +15,12 @@ module.exports = function(passport) {
 		return done(null, users[username]);
 	});
 	
-	passport.use('login', new localStrategy({
-		passReqToCallback : true
+	passport.use('login', new LocalStrategy({
+			passReqToCallback : true
 		},
 		function(req, username, password, done) {
 			//check if user exists
-			if (!user[username]) {
+			if (!users[username]) {
 				return done('user not found', false);
 			}
 			//check if password is valid
@@ -33,8 +33,8 @@ module.exports = function(passport) {
 		}
 	));
 	
-	passport.use('signup', new localStrategy({
-		passReqToCallback : true //allows us to pass back the entire request to the callback
+	passport.use('signup', new LocalStrategy({
+			passReqToCallback : true //allows us to pass back the entire request to the callback
 		},
 		function(req, username, password, done) {
 			//check if user already exists
@@ -46,6 +46,7 @@ module.exports = function(passport) {
 				username: username,
 				password: createHash(password)
 			};
+			console.log(users[username].username + 'Registration successful');
 			return done(null, users[username]);
 		})
 	);
