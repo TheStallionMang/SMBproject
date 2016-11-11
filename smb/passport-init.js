@@ -42,7 +42,7 @@ module.exports = function(passport) {
 		function(req, username, password,done) {
 			//check if user already exists
 			if (users[username]) {
-				return done('username is taken', false);
+				return done(null, false);
 			}
 			else if(req.body.newpwd == password){
 				users[username] = {
@@ -54,9 +54,8 @@ module.exports = function(passport) {
 				//add user to db
 			}else{
 				console.log("Fatal error :)");
-				return done('Passwords do not match', false);
+				return done(null, false);
 			}
-			
 		})
 	);
 	
