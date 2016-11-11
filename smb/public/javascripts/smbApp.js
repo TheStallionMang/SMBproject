@@ -79,7 +79,7 @@ app.controller('mainController', function($scope) {
 });
 
 app.controller('authController', function($scope, $http, $rootScope, $location) {
-	$scope.user = {username: '', password: ''};
+	$scope.user = {username: '', password: '', newpwd: ''};
 	$scope.error_message = '';
 
 	$scope.login = function() {

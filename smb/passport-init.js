@@ -1,5 +1,6 @@
 var LocalStrategy = require('passport-local').Strategy;
 var bCrypt = require('bcrypt-nodejs');
+
 //temporary data store
 var users = {};
 module.exports = function(passport) {
@@ -38,18 +39,24 @@ module.exports = function(passport) {
 	passport.use('signup', new LocalStrategy({
 			passReqToCallback : true //allows us to pass back the entire request to the callback
 		},
-		function(req, username, password, done) {
+		function(req, username, password,done) {
 			//check if user already exists
 			if (users[username]) {
-				return done('usernmane is taken', false);
+				return done('username is taken', false);
 			}
-			//add user to db
-			users[username] = {
-				username: username,
-				password: createHash(password)
-			};
-			console.log(users[username].username + 'Registration successful');
-			return done(null, users[username]);
+			else if(req.body.newpwd == password){
+				users[username] = {
+					username: username,
+					password: createHash(password)
+				};	
+				console.log(users[username].username + 'Registration successful');
+				return done(null, users[username]);
+				//add user to db
+			}else{
+				console.log("Fatal error :)");
+				return done('Passwords do not match', false);
+			}
+			
 		})
 	);
 	
