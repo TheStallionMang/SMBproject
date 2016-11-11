@@ -33,12 +33,13 @@
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                   <li><a class="navbar-right" href="#/inv">Inventory</a></li>
-                  <li><a href="#/orders">Order</a></li>
+                  <li><a href="#/orders" ng-show="authenticated">Order</a></li>
                   <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopop="true" aria-expanded="false">***Logged in Name***<span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopop="true" aria-expanded="false" ng-show="authenticated">Signed is as {{current_user}}<span class="caret"></span></a>
                       <ul class="dropdown-menu">
                         <li><a href="">Dashboard</a></li>
                         <li><a href="">Settings</a></li>
+                        <li><a href="#/" ng-show="authenticated" ng-click="signout()">Logout</a></li>
                       </ul>
                   </li>
                 </ul>
@@ -54,6 +55,7 @@
         <footer>
           <p>&copy; 2016 Company, Inc.</p>
           <a href="#/login">Employee Login</a>
+          <a href="#/register">Employee Register</a>
         </footer>
 
 

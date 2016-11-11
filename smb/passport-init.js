@@ -21,15 +21,17 @@ module.exports = function(passport) {
 		function(req, username, password, done) {
 			//check if user exists
 			if (!users[username]) {
-				return done('user not found', false);
+				console.log('User not found');
+				return done(null, false);
 			}
 			//check if password is valid
 			if (isValidPassword(users[username], password)) {
-				return done('invalid password', false);
-			}
+				return done(null, users[username]);
+			}else {
 			//succssfully logged in
-			console.log('succssfully signed in');
-			return done(null, users[username]);
+			console.log('Invalid password');
+			return done(null, false);
+			}
 		}
 	));
 	

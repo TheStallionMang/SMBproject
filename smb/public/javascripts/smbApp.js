@@ -1,4 +1,13 @@
-var app= angular.module('smbApp', ['ngRoute']);
+var app= angular.module('smbApp', ['ngRoute']).run(function($http, $rootScope) {
+	$rootScope.authenticated = false;
+	$rootScope.current_user = '';
+
+	$rootScope.signout = function() {
+		$http.get('auth/signout');
+		$rootScope.authenticated = false;
+		$rootScope.current_user = '';
+	};
+});
 
 app.config(function($routeProvider) {
 	$routeProvider
@@ -9,13 +18,13 @@ app.config(function($routeProvider) {
 		templateUrl: 'home.html',
 		controller: 'mainController'
 	})
-	// Vendor Orders
+	// List of Vendor Orders
 	.when('/orders', {
 		templateUrl: 'vendorOrder.html',
 		controller: 'mainController'
 	})
 
-	// Inventory
+	// Inventory Table
 	.when('/inv', {
 		templateUrl: 'inventory.html',
 		controller: 'mainController'
@@ -27,22 +36,22 @@ app.config(function($routeProvider) {
 		controller: 'mainController'
 	})
 
-	// Add an Item to the Inventory
+	// Form to add an item to the Inventory
 	.when('/add-inv', {
 		templateUrl: 'addInv.html',
 		controller: 'mainController'
 	})
 
-	// Login
+	// Login form
 	.when('/login', {
 		templateUrl: 'login.html',
-		controller: 'mainController'
+		controller: 'authController'
 	})
 
-	// Register
+	// Register an account form
 	.when('/register', {
 		templateUrl: 'register.html',
-		controller: 'mainController'
+		controller: 'authController'
 	})
 
 	// Dashboard
@@ -66,5 +75,34 @@ app.controller('mainController', function($scope) {
 		$scope.newItem.created_at = Date.now();
 		$scope.items.push($scope.newItem);
 		$scope.newItem = {product_name: '', vendor_name: '', quantity: '', sell_price: '', created_at: ''};
+	};
+});
+
+app.controller('authController', function($scope, $http, $rootScope, $location) {
+	$scope.user = {username: '', password: ''};
+	$scope.error_message = '';
+
+	$scope.login = function() {
+		$http.post('/auth/login', $scope.user).success(function(data) {
+			if(data.state == 'success') {
+				$rootScope.authenticated = true;
+				$rootScope.current_user = data.user.username;
+				$location.path('/');
+			} else {
+				$scope.error_message = data.message;
+			}
+		});
+	};
+
+	$scope.register = function() {
+		$http.post('/auth/signup', $scope.user).success(function(data) {
+			if(data.state == 'success') {
+				$rootScope.authenticated = true;
+				$rootScope.current_user = data.user.username;
+				$location.path('/');
+			} else {
+				$scope.error_message = data.message;
+			}
+		});
 	};
 });
