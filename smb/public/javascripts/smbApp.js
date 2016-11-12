@@ -1,6 +1,8 @@
-var app= angular.module('smbApp', ['ngRoute']).run(function($http, $rootScope) {
+
+var app = angular.module('smbApp', ['ngRoute']).run(function($http, $rootScope) {
 	$rootScope.authenticated = false;
 	$rootScope.current_user = '';
+	$rootScope.items = [];
 
 	$rootScope.signout = function() {
 		$http.get('auth/signout');
@@ -67,13 +69,13 @@ app.config(function($routeProvider) {
 	});
 });
 
-app.controller('mainController', function($scope) {
-	$scope.items = [];
+app.controller('mainController', function($scope, $rootScope) {
+	//$scope.items = [];
 	$scope.newItem = {product_name: '', vendor_name: '', quantity: '', sell_price: '', created_at: ''};
 
 	$scope.addInv = function() {
 		$scope.newItem.created_at = Date.now();
-		$scope.items.push($scope.newItem);
+		$rootScope.items.push($scope.newItem);
 		$scope.newItem = {product_name: '', vendor_name: '', quantity: '', sell_price: '', created_at: ''};
 	};
 });

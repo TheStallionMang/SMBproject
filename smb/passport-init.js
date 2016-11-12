@@ -28,7 +28,7 @@ module.exports = function(passport) {
 			//check if password is valid
 			if (isValidPassword(users[username], password)) {
 				return done(null, users[username]);
-			}else {
+			} else {
 			//succssfully logged in
 			console.log('Invalid password');
 			return done(null, false);
@@ -39,12 +39,12 @@ module.exports = function(passport) {
 	passport.use('signup', new LocalStrategy({
 			passReqToCallback : true //allows us to pass back the entire request to the callback
 		},
-		function(req, username, password,done) {
+		function(req, username, password, done) {
 			//check if user already exists
 			if (users[username]) {
 				return done(null, false);
 			}
-			else if(req.body.newpwd == password){
+			else if(req.body.newpwd == password) {
 				users[username] = {
 					username: username,
 					password: createHash(password)
@@ -64,7 +64,7 @@ module.exports = function(passport) {
     };
     
     // Generates hash using bCrypt
-    var createHash = function(password){
+    var createHash = function(password) {
         return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
     };
 	
