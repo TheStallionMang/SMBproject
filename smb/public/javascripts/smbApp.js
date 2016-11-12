@@ -31,7 +31,19 @@ app.config(function($routeProvider) {
 		templateUrl: 'inventory.html',
 		controller: 'mainController'
 	})
-
+	
+	//detailed information about an item
+	.when('/inv-detail', {
+		templateUrl: 'invItemDetail.html',
+		controller: 'mainController'
+	})
+	
+	//detailed information about a vendor
+	.when('/vendor-detail', {
+		templateUrl: 'vendorDetail.html',
+		controller: 'mainController'
+	})
+	
 	// Contact Page from home page(***Footer on every page?***)
 	.when('/cont', {
 		templateUrl: 'contact.html',
