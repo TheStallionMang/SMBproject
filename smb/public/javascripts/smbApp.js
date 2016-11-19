@@ -1,5 +1,22 @@
 
-var app = angular.module('smbApp', ['ngRoute', 'ngResource']).run(function($rootScope) {
+var app = angular.module('smbApp', ['ngRoute', 'ngResource']).run(function($rootScope, $http, $location) {
+	$rootScope.loggedIn = function() {
+    	$http.post('/auth/isloggedIn').success(function(data) {
+      	if(data.state == 'success') {
+        	$rootScope.authenticated = true;
+        	$rootScope.current_user = data.user.USERNAME;
+        	$location.path('/');
+      	}
+      	else {
+        	$rootScope.authenticated = false;
+        	$rootScope.current_user = '';
+        	$location.path('/');
+      		}
+    	});
+  	};
+
+  	$rootScope.loggedIn();
+	
 	$rootScope.authenticated = false;
 	$rootScope.current_user = '';
 
@@ -271,7 +288,9 @@ app.config(function($routeProvider) {
 });
 
 app.controller('mainController', function($scope, $rootScope) {
-	
+	$scope.addInvItem = function() {
+		
+	}
 });
 
 app.controller('authController', function($scope, $http, $rootScope, $location) {

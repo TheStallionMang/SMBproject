@@ -18,6 +18,16 @@ module.exports = function(passport){
         successRedirect: '/auth/success',
         failureRedirect: '/auth/failure'
     }));
+    
+    //is logged in
+    router.post('/isloggedin', function(req, res){
+    if(req.isAuthenticated()) {
+        res.send({state: 'success', user: req.user});
+    }
+    else  {
+        res.send({state: 'failure', user: null});
+    }
+	});
 
     //sign up
     router.post('/signup', passport.authenticate('signup', {
