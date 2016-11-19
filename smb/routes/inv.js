@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
+var Inventory = mongoose.model('Inventory');
 
 router.use(function(req, res, next) {
 	if (req.method === "GET") {
@@ -16,35 +18,90 @@ router.use(function(req, res, next) {
 });
 
 //api for all inventory items
-router.route('/items')
+router.route('/')
 
-    //create a new post
+    // create a new inventory item
     .post(function(req,res) {
 
-        //TODO create a new post in the database
-        res.send({message:"TODO create a new item in the database"});
+        var item = new Inventory();
+
+        item.NAME = 
+        item.CONDITION = 
+        item.UNIT_PRICE = 
+        item.VENDOR_REF_ID = 
+        item.CATEGORY_REF_ID = 
+        item.VENDOR_ORDER_REF_ID = 
+        item.TRACKING_INFO.CREATED_BY =
+        item.TRACKING_INFO.CREATED_DATE =
+        item.TRACKING_INFO.UPDATED_BY =
+        item.TRACKING_INFO.UPDATED_DATE =
+
+        item.save(function(err, item) {
+            if(err) {
+                return res.send(500, err);
+            }
+            return res.json(item);
+        });
+
     })
 
+    // return all items
     .get(function(req,res) {
+        Inventory.find(function(err, items) {
+            if(err) {
+                return res.send(500, err);
+            }
+            return res.send(items);
+        });
+    });
 
-        //TODO get all the posts in the database
-        res.send({message:"TODO get all the items in the database"});
-    })
+//api for a specific item
+router.route('/:id')
 
-//api for a specfic item
-router.route('/items/:id')
-
-    //create
     .put(function(req,res) {
-        res.send({message:'TODO modify an existing item by using param ' + req.params.id});
+        Inventory.findById(req.params.id, function(err, item) {
+            if(err) {
+                return res.send(err);
+            }
+
+            item.NAME = 
+            item.CONDITION = 
+            item.UNIT_PRICE = 
+            item.VENDOR_REF_ID = 
+            item.CATEGORY_REF_ID = 
+            item.VENDOR_ORDER_REF_ID = 
+            item.TRACKING_INFO.CREATED_BY =
+            item.TRACKING_INFO.CREATED_DATE =
+            item.TRACKING_INFO.UPDATED_BY =
+            item.TRACKING_INFO.UPDATED_DATE =
+
+            item.save(function(err, item) {
+                if(err) {
+                    return res.send(500, err);
+                }
+                return res.json(item);
+            });
+        });
     })
 
     .get(function(req,res) {
-        res.send({message:'TODO get an existing item by using param ' + req.params.id});
+        Inventory.findById(req.params.id, function(err, item) {
+            if(err) {
+                return res.send(err);
+            }
+            return res.json(item);
+        });
     })
 
     .delete(function(req,res) {
-        res.send({message:'TODO delete an existing item by using param ' + req.params.id})
+        Inventory.remove({
+            _id: req.params.id
+        }, function(err) {
+            if(err) {
+                return res.send(err);
+            }
+            return res.json("deleted:(");
+        });
     });
 
 module.exports = router;

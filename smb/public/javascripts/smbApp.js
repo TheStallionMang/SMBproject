@@ -1,8 +1,7 @@
 
-var app = angular.module('smbApp', ['ngRoute']).run(function($http, $rootScope) {
+var app = angular.module('smbApp', ['ngRoute', 'ngResource']).run(function($rootScope) {
 	$rootScope.authenticated = false;
 	$rootScope.current_user = '';
-	$rootScope.items = [];
 
 	$rootScope.signout = function() {
 		$http.get('auth/signout');
@@ -15,47 +14,15 @@ app.config(function($routeProvider) {
 	$routeProvider
 	// Loading partials
 
+	/*	
+		*** BASIC PAGES ***
+	*/
+
 	// Homepage
 	.when('/', {
 		templateUrl: 'home.html',
 		controller: 'mainController'
 	})
-	// List of Vendor Orders
-	.when('/orders', {
-		templateUrl: 'vendorOrder.html',
-		controller: 'mainController'
-	})
-
-	// Inventory Table
-	.when('/inv', {
-		templateUrl: 'inventory.html',
-		controller: 'mainController'
-	})
-	
-	//detailed information about an item
-	.when('/inv-detail', {
-		templateUrl: 'invItemDetail.html',
-		controller: 'mainController'
-	})
-	
-	//detailed information about a vendor
-	.when('/vendor-detail', {
-		templateUrl: 'vendorDetail.html',
-		controller: 'mainController'
-	})
-	
-	// Contact Page from home page(***Footer on every page?***)
-	.when('/cont', {
-		templateUrl: 'contact.html',
-		controller: 'mainController'
-	})
-
-	// Form to add an item to the Inventory
-	.when('/add-inv', {
-		templateUrl: 'addInv.html',
-		controller: 'mainController'
-	})
-
 	// Login form
 	.when('/login', {
 		templateUrl: 'login.html',
@@ -74,22 +41,237 @@ app.config(function($routeProvider) {
 		controller: 'mainController'
 	})
 
-	// Place an Order
-	.when('/order-form', {
-		templateUrl: 'orderForm.html',
+	// Contact Page
+	.when('/cont', {
+		templateUrl: 'contact.html',
+		controller: 'mainController'
+	})
+
+	/*	
+		*** ACCESS ***
+	*/
+
+	// List of access
+	.when('/acc', {
+		templateUrl: 'acc.html',
+		controller: 'mainController'
+	})
+	
+	// Detailed information about access
+	.when('/acc-detail', {
+		templateUrl: 'invItemDetail.html',
+		controller: 'mainController'
+	})
+
+	// Form to add access
+	.when('/acc-add', {
+		templateUrl: 'acc-add.html',
+		controller: 'mainController'
+	})
+
+
+	/*	
+		*** CATEGORIES ***
+	*/
+
+	// List of Categories
+	.when('/cat', {
+		templateUrl: 'cat.html',
+		controller: 'mainController'
+	})
+	
+	// Detailed information about a category
+	.when('/cat-detail', {
+		templateUrl: 'cat-detail.html',
+		controller: 'mainController'
+	})
+
+	// Form to add a category
+	.when('/cat-add', {
+		templateUrl: 'cat-add.html',
+		controller: 'mainController'
+	})
+
+	/*	
+		*** CUSTOMERS ***
+	*/
+
+	// List of Categories
+	.when('/cust', {
+		templateUrl: 'cust.html',
+		controller: 'mainController'
+	})
+	
+	// Detailed information about a customer
+	.when('/cust-detail', {
+		templateUrl: 'cust-detail.html',
+		controller: 'mainController'
+	})
+
+	// Form to add a customer
+	.when('/cust-add', {
+		templateUrl: 'cust-add.html',
+		controller: 'mainController'
+	})
+
+	/*	
+		*** EMPLOYEES ***
+	*/
+
+	// List of Employees
+	.when('/emp', {
+		templateUrl: 'emp.html',
+		controller: 'mainController'
+	})
+	
+	// Detailed information about an employee
+	.when('/emp-detail', {
+		templateUrl: 'emp-detail.html',
+		controller: 'mainController'
+	})
+
+	// Form to add an employee
+	.when('/emp-add', {
+		templateUrl: 'emp-add.html',
+		controller: 'mainController'
+	})
+
+	/*	
+		*** INVENTORY ***
+	*/
+
+	// Inventory Table
+	.when('/inv', {
+		templateUrl: 'inv.html',
+		controller: 'mainController'
+	})
+	
+	// Detailed information about an item
+	.when('/inv-detail', {
+		templateUrl: 'inv-detail.html',
+		controller: 'mainController'
+	})
+
+	// Form to add an item to the Inventory
+	.when('/inv-add', {
+		templateUrl: 'inv-add.html',
+		controller: 'mainController'
+	})
+
+	/*	
+		*** JOBS ***
+	*/
+
+	// List of jobs
+	.when('/job', {
+		templateUrl: 'job.html',
+		controller: 'mainController'
+	})
+	
+	// Detailed information about a job
+	.when('/job-detail', {
+		templateUrl: 'job-detail.html',
+		controller: 'mainController'
+	})
+
+	// Form to add a job
+	.when('/job-add', {
+		templateUrl: 'job-add.html',
+		controller: 'mainController'
+	})
+
+	/*	
+		*** ORDERS ***
+	*/
+
+	// Orders table
+	.when('/order', {
+		templateUrl: 'order.html',
+		controller: 'mainController'
+	})
+
+	// Detailed information about an order
+	.when('/order-detail', {
+		templateUrl: 'order-detail.html',
+		controller: 'mainController'
+	})
+
+	// Form to place an order
+	.when('/order-add', {
+		templateUrl: 'order-add.html',
+		controller: 'mainController'
+	})
+
+	/*	
+		*** TRANSACTIONS ***
+	*/
+
+	// List of Transactions
+	.when('/trans', {
+		templateUrl: 'trans.html',
+		controller: 'mainController'
+	})
+	
+	// Detailed information about a transaction
+	.when('/trans-detail', {
+		templateUrl: 'trans-detail.html',
+		controller: 'mainController'
+	})
+
+	// Form to add a transaction
+	.when('/trans-add', {
+		templateUrl: 'trans-add.html',
+		controller: 'mainController'
+	})
+
+	/*	
+		*** USERS ***
+	*/
+
+	// List of users
+	.when('/user', {
+		templateUrl: 'user.html',
+		controller: 'mainController'
+	})
+	
+	// Detailed information about a user
+	.when('/user-detail', {
+		templateUrl: 'user-detail.html',
+		controller: 'mainController'
+	})
+
+	// Form to add a user
+	.when('/user-add', {
+		templateUrl: 'user-add.html',
+		controller: 'mainController'
+	})
+
+	/*	
+		*** VENDORS ***
+	*/
+
+	// List of Vendors
+	.when('/vend', {
+		templateUrl: 'vend.html',
+		controller: 'mainController'
+	})
+	
+	// Detailed information about a vendor
+	.when('/vend-detail', {
+		templateUrl: 'vend-detail.html',
+		controller: 'mainController'
+	})
+
+	// Form to add a vendor
+	.when('/vend-add', {
+		templateUrl: 'vend-add.html',
 		controller: 'mainController'
 	});
+
 });
 
 app.controller('mainController', function($scope, $rootScope) {
-	//$scope.items = [];
-	$scope.newItem = {product_name: '', vendor_name: '', quantity: '', sell_price: '', created_at: ''};
-
-	$scope.addInv = function() {
-		$scope.newItem.created_at = Date.now();
-		$rootScope.items.push($scope.newItem);
-		$scope.newItem = {product_name: '', vendor_name: '', quantity: '', sell_price: '', created_at: ''};
-	};
+	
 });
 
 app.controller('authController', function($scope, $http, $rootScope, $location) {
@@ -100,7 +282,7 @@ app.controller('authController', function($scope, $http, $rootScope, $location) 
 		$http.post('/auth/login', $scope.user).success(function(data) {
 			if(data.state == 'success') {
 				$rootScope.authenticated = true;
-				$rootScope.current_user = data.user.username;
+				$rootScope.current_user = data.user.USERNAME;
 				$location.path('/');
 			} else {
 				$scope.error_message = data.message;
@@ -112,7 +294,7 @@ app.controller('authController', function($scope, $http, $rootScope, $location) 
 		$http.post('/auth/signup', $scope.user).success(function(data) {
 			if(data.state == 'success') {
 				$rootScope.authenticated = true;
-				$rootScope.current_user = data.user.username;
+				$rootScope.current_user = data.user.USERNAME;
 				$location.path('/');
 			} else {
 				$scope.error_message = data.message;
@@ -120,3 +302,13 @@ app.controller('authController', function($scope, $http, $rootScope, $location) 
 		});
 	};
 });
+
+/*app.factory('jobFactory', function($resource) {
+	return $resource('/job/:id');
+});
+
+app.controller('jobController', function(jobFactory, $scope, $rootScope) {
+	$scope.jobs = jobFactory.query();
+	$scope.newJob = {title: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
+});
+*/
