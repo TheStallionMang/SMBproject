@@ -26,13 +26,13 @@ router.route('/')
 
     	var job = new Job();
 
-    	job.JOB_TITLE = req.body.job;
-    	job.TRACKING_INFO.CREATED_BY =
-        job.TRACKING_INFO.CREATED_DATE =
-        job.TRACKING_INFO.UPDATED_BY =
-        job.TRACKING_INFO.UPDATED_DATE =
+    	job.JOB_TITLE = req.body.title;
+    	job.TRACKING_INFO.CREATED_BY = req.body.created_by;
+        job.TRACKING_INFO.CREATED_DATE = req.body.created_at;
+        job.TRACKING_INFO.UPDATED_BY = req.body.updated_by;
+        job.TRACKING_INFO.UPDATED_DATE = req.body.updated_by;
 
-        Job.save(function(err, job) {
+        job.save(function(err, job) {
         	if(err) {
         		return res.send(500, err);
         	}

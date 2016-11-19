@@ -182,19 +182,19 @@ app.config(function($routeProvider) {
 	// List of jobs
 	.when('/job', {
 		templateUrl: 'job.html',
-		controller: 'mainController'
+		controller: 'jobController'
 	})
 	
 	// Detailed information about a job
 	.when('/job-detail', {
 		templateUrl: 'job-detail.html',
-		controller: 'mainController'
+		controller: 'jobController'
 	})
 
 	// Form to add a job
 	.when('/job-add', {
 		templateUrl: 'job-add.html',
-		controller: 'mainController'
+		controller: 'jobController'
 	})
 
 	/*	
@@ -322,12 +322,27 @@ app.controller('authController', function($scope, $http, $rootScope, $location) 
 	};
 });
 
-/*app.factory('jobFactory', function($resource) {
-	return $resource('/job/:id');
+app.factory('jobFactory', function($http) {
+	var factory = {};
+	factory.getAll = function() {
+		return $http.get('/job');
+	}
+	return factory;
 });
 
-app.controller('jobController', function(jobFactory, $scope, $rootScope) {
-	$scope.jobs = jobFactory.query();
-	$scope.newJob = {title: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
+app.controller('jobController', function($scope, jobFactory) {
+	$scope.jobs = [];
+	$scope.newJob = {title: '', created_by: ''};
+
+	jobFactory.getAll().success(function(data) {
+		$scope.jobs = data;
+	});
+
+	$scope.addJob = function() {
+		$scope.newJob.created_by = $rootScope.current_user;
+
+		$http.post('/job', $scope.newJob).success(function(data) {
+			$location.path('/job');
+		});
+	};
 });
-*/
