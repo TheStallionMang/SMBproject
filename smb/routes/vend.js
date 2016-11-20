@@ -26,20 +26,20 @@ router.route('/')
 
     	var vendor = new Vendor();
 
-    	vendor.NAME =
-        vendor.ADDRESS.STREET =
-        vendor.ADDRESS.CITY =
-        vendor.ADDRESS.STATE
-        vendor.V_STATUS = 
-        vendor.WEBSITE =
-        vendor.COMMENTS =
-        vendor.EMAIL =
-    	vendor.TRACKING_INFO.CREATED_BY =
-        vendor.TRACKING_INFO.CREATED_DATE =
-        vendor.TRACKING_INFO.UPDATED_BY =
-        vendor.TRACKING_INFO.UPDATED_DATE =
+    	vendor.NAME = req.body.name;
+        vendor.ADDRESS.STREET = req.body.street;
+        vendor.ADDRESS.CITY = req.body.city;
+        vendor.ADDRESS.STATE = req.body.state;
+        vendor.V_STATUS = req.body.status;
+        vendor.WEBSITE = req.body.website;
+        vendor.COMMENTS = req.body.comments;
+        vendor.EMAIL = req.body.email;
+    	vendor.TRACKING_INFO.CREATED_BY = req.body.created_by;
+        vendor.TRACKING_INFO.CREATED_DATE = req.body.created_at;
+        vendor.TRACKING_INFO.UPDATED_BY = req.body.updated_by;
+        vendor.TRACKING_INFO.UPDATED_DATE = req.body.updated_at;
 
-        Vendor.save(function(err, vendor) {
+        vendor.save(function(err, vendor) {
         	if(err) {
         		return res.send(500, err);
         	}

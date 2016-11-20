@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
 
 var employee = new mongoose.Schema({
 
-	EMP_ID: String,
+	EMP_ID: Number,
 	SSN: String,
 	FNAME: String,
 	LNAME: String,
@@ -12,7 +13,7 @@ var employee = new mongoose.Schema({
 	},
 	TRACKING_INFO:{
 		CREATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		CREATED_DATE:{
@@ -20,7 +21,7 @@ var employee = new mongoose.Schema({
 			default: Date.now
 		},
 		UPDATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		UPDATED_DATE:{
@@ -29,5 +30,7 @@ var employee = new mongoose.Schema({
 		}
 	},
 });
+
+employee.plugin(autoIncrement.plugin, { model: 'Employee', field: 'EMP_ID' });
 
 mongoose.model('Employee', employee);

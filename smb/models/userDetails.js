@@ -1,16 +1,17 @@
 var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
 
 var userDetails = new mongoose.Schema({
 
 	USERNAME: String,
 	PASSWORD: String,
 	EMP_REF_ID: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: String,
 		ref: 'Employee'
 	},
 	TRACKING_INFO:{
 		CREATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		CREATED_DATE:{
@@ -18,7 +19,7 @@ var userDetails = new mongoose.Schema({
 			default: Date.now
 		},
 		UPDATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		UPDATED_DATE:{
@@ -27,5 +28,5 @@ var userDetails = new mongoose.Schema({
 		}
 	}
 });
-
+userDetails.plugin(autoIncrement.plugin, 'User');
 mongoose.model('User', userDetails);

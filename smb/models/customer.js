@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
 
 var customer = new mongoose.Schema({
 	CUST_ID: Number,
@@ -14,12 +15,12 @@ var customer = new mongoose.Schema({
 	EMAIL: String,
 	CARD_NUMBER	: String,
 	USER_REF_ID: { //Why do we need this? For future online shoppers?
-		type: mongoose.Schema.Types.ObjectId,
+		type: String,
 		ref: 'User'
 	},
 	TRACKING_INFO:{
 		CREATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		CREATED_DATE:{
@@ -27,7 +28,7 @@ var customer = new mongoose.Schema({
 			default: Date.now
 		},
 		UPDATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		UPDATED_DATE:{
@@ -36,5 +37,5 @@ var customer = new mongoose.Schema({
 		}
 	}
 });
-
+customer.plugin(autoIncrement.plugin, 'Customer');
 mongoose.model('Customer', customer);

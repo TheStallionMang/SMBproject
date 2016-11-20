@@ -26,21 +26,20 @@ router.route('/')
 
     	var customer = new Customer();
 
-    	customer.CUST_ID =
-    	customer.FNAME = 
-    	customer.LNAME =
-    	customer.ADDRESS.STREET =
-    	customer.ADDRESS.CITY =
-    	customer.ADDRESS.STATE =
-    	customer.PAYMENT_TYPE =
-    	customer.PHONE =
-    	customer.EMAIL =
-    	customer.CARD_NUMBER = 
-    	customer.USER_REF_ID =
-    	customer.TRACKING_INFO.CREATED_BY =
-        customer.TRACKING_INFO.CREATED_DATE =
-        customer.TRACKING_INFO.UPDATED_BY =
-        customer.TRACKING_INFO.UPDATED_DATE =
+    	customer.FNAME = req.body.firstname;
+    	customer.LNAME = req.body.lastname;
+    	customer.ADDRESS.STREET = req.body.street;
+    	customer.ADDRESS.CITY = req.body.city;
+    	customer.ADDRESS.STATE = req.body.state;
+    	customer.PAYMENT_TYPE = req.body.payment;
+    	customer.PHONE = req.body.phone;
+    	customer.EMAIL = req.body.email;
+    	customer.CARD_NUMBER = req.body.card;
+    	//customer.USER_REF_ID = req.body.
+    	customer.TRACKING_INFO.CREATED_BY = req.body.updated_by;
+        customer.TRACKING_INFO.CREATED_DATE = req.body.updated_at;
+        customer.TRACKING_INFO.UPDATED_BY = req.body.updated_by;
+        customer.TRACKING_INFO.UPDATED_DATE = req.body.updated_at;
 
         customer.save(function(err, customer) {
         	if(err) {

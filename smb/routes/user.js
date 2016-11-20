@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var Employee = mongoose.model('Employee');
 
 /*router.use(function(req, res, next) {
 	if (req.method === "GET") {
@@ -21,27 +22,16 @@ var User = mongoose.model('User');
 //api for all users
 router.route('/')
 
-    /* // create a new inventory item
+    
     .post(function(req,res) {
 
-    	var user = new User();
-
-    	user.USERNAME = 
-        user.PASSWORD =
-        user.EMP_REF_ID = 
-    	user.TRACKING_INFO.CREATED_BY =
-        user.TRACKING_INFO.CREATED_DATE =
-        user.TRACKING_INFO.UPDATED_BY =
-        user.TRACKING_INFO.UPDATED_DATE =
-
-        user.save(function(err, user) {
-        	if(err) {
-        		return res.send(500, err);
-        	}
-        	return res.json(user);
+        Employee.find({FNAME: req.body.firstname, LNAME: req.body.lastname}, function(err, emp) {
+            if(err) {
+                return res.send(500, err);
+            }
+            return res.send(emp);
         });
     })
-    */
 
     // return all users
     .get(function(req,res) {

@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
 
 var vendorOrder = new mongoose.Schema({
 
 	ORDER_DETAILS: [{
 		ITEM: String,
-		Quantity:Number
+		QUANTITY: Number
 	}],
 	DELIVERY_ADDRESS: {
 		STREET:String,
@@ -19,11 +20,17 @@ var vendorOrder = new mongoose.Schema({
 	EST_SHIPPING_COST: Number,
 	TOTAL_COST: Number,
 	IS_APPROVED: Boolean,
-	EMP_REF_ID: mongoose.Schema.Types.ObjectId,
-	VENDOR_REF_ID: mongoose.Schema.Types.ObjectId,
+	USER_REF_ID: {
+		type: String,
+		ref: 'User'
+	},
+	VENDOR_REF_ID: {
+		type: String,
+		ref: 'Vendor'
+	},
 	TRACKING_INFO:{
 		CREATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		CREATED_DATE:{
@@ -31,7 +38,7 @@ var vendorOrder = new mongoose.Schema({
 			default: Date.now
 		},
 		UPDATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		UPDATED_DATE:{
@@ -40,5 +47,5 @@ var vendorOrder = new mongoose.Schema({
 		}
 	}
 });
-
+vendorOrder.plugin(autoIncrement.plugin, 'Order');
 mongoose.model('Order', vendorOrder);

@@ -1,6 +1,6 @@
 <div class="jumbotron">
 	<div class="container">
-		<form ng-Submit="addCust()">
+		<form ng-submit="addCust()">
 			<div class="form-group">
 				<label>First Name</label>
 				<input type="text" class="form-control" ng-model="newCust.firstname">
@@ -32,6 +32,10 @@
 			<div class="form-group">
 				<label>Email</label>
 				<input type="text" class="form-control" ng-model="newCust.email">
+			</div>
+			<div class="form-group">
+				<label>Card</label>
+				<input type="text" class="form-control" ng-model="newCust.card">
 			</div>
 				<button type="submit" class="btn btn-default">Add</button>
 		</form>

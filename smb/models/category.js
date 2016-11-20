@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
 
 var category = new mongoose.Schema({
 
 	CATEGORY: String,
 	TRACKING_INFO:{
 		CREATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		CREATED_DATE:{
@@ -13,7 +14,7 @@ var category = new mongoose.Schema({
 			default: Date.now
 		},
 		UPDATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		UPDATED_DATE:{
@@ -22,5 +23,5 @@ var category = new mongoose.Schema({
 		}
 	}
 });
-
+category.plugin(autoIncrement.plugin, 'Category');
 mongoose.model('Category', category);

@@ -1,26 +1,31 @@
 var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
+
+var connection = mongoose.createConnection('mongodb://localhost/testlogin');
+
+autoIncrement.initialize(connection);
 
 var access = new mongoose.Schema({
-
+	
 	ISCREATE: Boolean,
 	ISREAD: Boolean,
 	ISUPDATE: Boolean,
 	ISDELETE: Boolean,
 	EMP_REF_ID: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: String,
 		ref: 'Employee'
 	},
 	SS_REF_ID: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: String,
 		ref: 'Subsystem'
 	},
 	USER_REF_ID: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: String,
 		ref: 'User'
 	},
 	TRACKING_INFO:{
 		CREATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		CREATED_DATE: {
@@ -28,7 +33,7 @@ var access = new mongoose.Schema({
 			default: Date.now
 		},
 		UPDATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		UPDATED_DATE:{
@@ -37,5 +42,6 @@ var access = new mongoose.Schema({
 		}
 	}
 });
+access.plugin(autoIncrement.plugin, 'Access');
 
 mongoose.model('Access', access);

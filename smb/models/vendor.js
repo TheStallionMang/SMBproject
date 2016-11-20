@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
 
 var vendor = new mongoose.Schema({
 
@@ -14,7 +15,7 @@ var vendor = new mongoose.Schema({
 	EMAIL: String,
 	TRACKING_INFO:{
 		CREATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		CREATED_DATE:{
@@ -22,7 +23,7 @@ var vendor = new mongoose.Schema({
 			default: Date.now
 		},
 		UPDATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		UPDATED_DATE:{
@@ -31,5 +32,5 @@ var vendor = new mongoose.Schema({
 		}
 	}
 });
-
+vendor.plugin(autoIncrement.plugin, 'Vendor');
 mongoose.model('Vendor', vendor);

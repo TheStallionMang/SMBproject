@@ -251,9 +251,8 @@ app.config(function($routeProvider) {
 		controller: 'userController'
 	})
 
-	// Form to add a user
-	.when('/user-add', {
-		templateUrl: 'user-add.html',
+	.when('/middleman', {
+		templateUrl: 'middleman.html',
 		controller: 'userController'
 	})
 
@@ -320,13 +319,13 @@ app.factory('accFactory', function($resource) {
 
 app.controller('accController', function(accFactory, $scope, $rootScope, $location) {
 	$scope.access = accFactory.query();
-	$scope.newAcc = {empId: '', username: '', subsystem: '', create: '', read: '', update: '', delete: '', created_at: ''};
+	$scope.newAcc = {username: '', subsystem: '', create: '', read: '', update: '', delete: '', created_at: ''};
 
 	$scope.addAcc = function() {
 		$scope.newAcc.created_at = Date.now();
 		accFactory.save($scope.newAcc, function() {
 			$scope.access = accFactory.query();
-			$scope.newAcc = {empId: '', username: '', subsystem: '', create: '', read: '', update: '', delete: '', created_at: ''};
+			$scope.newAcc = {username: '', subsystem: '', create: '', read: '', update: '', delete: '', created_at: ''};
 
 			$location.path('/acc');
 		});
@@ -344,7 +343,7 @@ app.controller('catController', function(catFactory, $scope, $rootScope, $locati
 	$scope.newCat = {name: '', created_at: ''};
 
 	$scope.addCat = function() {
-		$scope.newJob.created_at = Date.now();
+		$scope.newCat.created_at = Date.now();
 		catFactory.save($scope.newCat, function() {
 			$scope.categories = catFactory.query();
 			$scope.newCat = {name: '', created_at: ''};
@@ -361,13 +360,13 @@ app.factory('custFactory', function($resource) {
 
 app.controller('custController', function(custFactory, $scope, $rootScope, $location) {
 	$scope.customers = custFactory.query();
-	$scope.newCust = {firstname: '', lastname: '', street: '', city: '', state: '', payment: '', phone: '', email: '', created_at: ''};
+	$scope.newCust = {firstname: '', lastname: '', street: '', city: '', state: '', payment: '', phone: '', email: '', card: '', created_at: ''};
 
 	$scope.addCust = function() {
 		$scope.newCust.created_at = Date.now();
 		custFactory.save($scope.newCust, function() {
 			$scope.customers = custFactory.query();
-			$scope.newCust = {firstname: '', lastname: '', street: '', city: '', state: '', payment: '', phone: '', email: '', created_at: ''};
+			$scope.newCust = {firstname: '', lastname: '', street: '', city: '', state: '', payment: '', phone: '', email: '', card: '', created_at: ''};
 			$location.path('/cust');
 		});
 	};
@@ -438,9 +437,21 @@ app.factory('orderFactory', function($resource) {
 	return $resource('/order/:id');
 });
 
-app.controller('orderController', function(orderFactory, $scope, $rootScope, $location) {
+app.controller('orderController', function(orderFactory, vendFactory, $scope, $rootScope, $location) {
 	$scope.orders = orderFactory.query();
+	$scope.vendors = vendFactory.query();
 	$scope.newOrder = {vendor: '', item: '', street: '', city: '', state: '', shipping: '', receipt: '', created_at: ''};
+	$scope.items = [{id: 'choice1'}];
+
+	$scope.addItem = function() {
+		var newItem = $scope.items.length+1;
+		$scope.items.push({'id':'choice' + newItem});
+	};
+
+	$scope.removeItem = function() {
+		var lastItem = $scope.items.length-1;
+		$scope.items.splice(lastItem);
+	};
 
 	$scope.addOrder = function() {
 		$scope.newOrder.created_at = Date.now();
@@ -479,17 +490,16 @@ app.factory('userFactory', function($resource) {
 	return $resource('/user/:id');
 });
 
-app.controller('userController', function(userFactory, $scope, $rootScope, $location) {
+app.controller('userController', function(userFactory, $scope, $rootScope, $location, $http) {
 	$scope.users = userFactory.query();
-	$scope.newUser = {title: '', created_at: ''};
+	$scope.newUser = {firstname: '', lastname: ''};
 
-	$scope.addUser = function() {
-		$scope.newJob.created_at = Date.now();
+	$scope.checkEmp = function() { /*
 		userFactory.save($scope.newUser, function() {
-			$scope.usesrs = userFactory.query();
-			$scope.newUser = {title: ''};
-			$location.path('/user');
-		});
+			$scope.newUser = {firstname: '', lastname: ''};
+			$location.path('/register');
+		});*/
+		$location.path('/register');
 	};
 });
 
@@ -501,13 +511,13 @@ app.factory('vendFactory', function($resource) {
 
 app.controller('vendController', function(vendFactory, $scope, $rootScope, $location) {
 	$scope.vendors = vendFactory.query();
-	$scope.newVendor = {name: '', street: '', city: '', state: '', website: '', comments: '', email: '', created_at: ''};
+	$scope.newVendor = {name: '', street: '', city: '', state: '', status: '', website: '', comments: '', email: '', created_at: ''};
 
 	$scope.addVend = function() {
 		$scope.newVendor.created_at = Date.now();
 		vendFactory.save($scope.newVendor, function() {
 			$scope.vendors = vendFactory.query();
-			$scope.newVendor = {name: '', street: '', city: '', state: '', website: '', comments: '', email: '', created_at: ''};
+			$scope.newVendor = {name: '', street: '', city: '', state: '', status: '', website: '', comments: '', email: '', created_at: ''};
 			$location.path('/vend');
 		});
 	};

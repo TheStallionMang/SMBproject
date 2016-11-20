@@ -2,12 +2,14 @@
 	<div class="container">
 		<form ng-Submit="addOrder()">
 			<div class="form-group">
-				<label>Vendor</label>
-				<input type="text" class="form-control" ng-model="vendor">
+			  <label for="sel1">Vendor</label>
+			  <select class="form-control" id="sel1" ng-model="newEmp.position">
+			    <option ng-repeat="x in vendors">{{x.NAME}}</option>
+			  </select>
 			</div>
 			<div class="form-group">
 				<label>Item</label>
-				<input type="text" class="form-control" ng-model="item">
+				<input type="text" class="form-control" ng-model="street">
 			</div>
 			<!-- Need to be able to add multiple items -->
 			<div class="form-group">

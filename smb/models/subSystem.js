@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
 
 var subSystem = new mongoose.Schema({
 
 	SUB_SYSTEM: String,
 	TRACKING_INFO:{
 		CREATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		CREATED_DATE:{
@@ -13,7 +14,7 @@ var subSystem = new mongoose.Schema({
 			default: Date.now
 		},
 		UPDATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		UPDATED_DATE:{
@@ -22,5 +23,5 @@ var subSystem = new mongoose.Schema({
 		}
 	}
 });
-
+subSystem.plugin(autoIncrement.plugin, 'Subsystem');
 mongoose.model('Subsystem', subSystem);

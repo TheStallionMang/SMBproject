@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
 
 var transaction = new mongoose.Schema({
 	TRANS_TYPE: String,
@@ -8,16 +9,16 @@ var transaction = new mongoose.Schema({
 	TOTAL_COST: Number,
 	DELIVERY_STATUS: String,
 	INVENTORY_REF_ID: [{
-		type: mongoose.Schema.Types.ObjectId,
+		type: String,
 		ref: 'Inventory'
 	}],
 	CUSTOMER_REF_ID: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: String,
 		ref: 'Customer'
 	},
 	TRACKING_INFO:{
 		CREATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		CREATED_DATE:{
@@ -25,7 +26,7 @@ var transaction = new mongoose.Schema({
 			default: Date.now
 		},
 		UPDATED_BY: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: String,
 			ref: 'User' // User or Employee
 		},
 		UPDATED_DATE:{
@@ -35,4 +36,5 @@ var transaction = new mongoose.Schema({
 	}
 });
 
+transaction.plugin(autoIncrement.plugin, 'Transaction');
 mongoose.model('Transaction', transaction);
