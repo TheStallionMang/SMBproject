@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Employee = mongoose.model('Employee');
+var Job = mongoose.model('Job');
 
 /*router.use(function(req, res, next) {
 	if (req.method === "GET") {
@@ -26,16 +27,14 @@ router.route('/')
 
     	var employee = new Employee();
 
-    	employee.EMP_ID =
-    	employee.SSN = 
-    	employee.QUANTITY =
-    	employee.FNAME =
-    	employee.LNAME = 
-    	employee.JOB_ID =
-    	employee.TRACKING_INFO.CREATED_BY =
-        employee.TRACKING_INFO.CREATED_DATE =
-        employee.TRACKING_INFO.UPDATED_BY =
-        employee.TRACKING_INFO.UPDATED_DATE =
+    	employee.SSN = req.body.ssn;
+    	employee.FNAME = req.body.firstname;
+    	employee.LNAME = req.body.lastname;
+    	employee.JOB_ID = req.body.position;
+    	employee.TRACKING_INFO.CREATED_BY = req.body.created_by;
+        employee.TRACKING_INFO.CREATED_DATE = req.body.created_at;
+        employee.TRACKING_INFO.UPDATED_BY = req.body.updated_by;
+        employee.TRACKING_INFO.UPDATED_DATE = req.body.updated_date;
 
         employee.save(function(err, employee) {
         	if(err) {

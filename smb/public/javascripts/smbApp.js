@@ -379,15 +379,16 @@ app.factory('empFactory', function($resource) {
 	return $resource('/emp/:id');
 });
 
-app.controller('empController', function(empFactory, $scope, $rootScope, $location) {
+app.controller('empController', function(empFactory, jobFactory, $scope, $rootScope, $location) {
 	$scope.employees = empFactory.query();
-	$scope.newEmp = {empId: '', ssn: '', firstname: '', lastname: '', position: '', created_at: ''};
+	$scope.positions = jobFactory.query();
+	$scope.newEmp = {ssn: '', firstname: '', lastname: '', position: '', created_at: ''};
 
 	$scope.addEmp = function() {
 		$scope.newEmp.created_at = Date.now();
 		empFactory.save($scope.newEmp, function() {
 			$scope.employees = empFactory.query();
-			$scope.newEmp = {empId: '', ssn: '', firstname: '', lastname: '', position: '', created_at: ''};
+			$scope.newEmp = {ssn: '', firstname: '', lastname: '', position: '', created_at: ''};
 			$location.path('/emp');
 		});
 	};

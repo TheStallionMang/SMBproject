@@ -2,26 +2,31 @@
 	<div class="container">
 		<form ng-Submit="addEmp()">
 			<div class="form-group">
-				<label>Employee ID</label>
-				<input type="text" class="form-control" ng-model="empId">
-			</div>
-			<div class="form-group">
 				<label>SSN</label>
-				<input type="text" class="form-control" ng-model="ssn">
+				<input type="text" class="form-control" ng-model="newEmp.ssn">
 			</div>
 			<div class="form-group">
 				<label>First Name</label>
-				<input type="text" class="form-control" ng-model="firstname">
+				<input type="text" class="form-control" ng-model="newEmp.firstname">
 			</div>
 			<div class="form-group">
 				<label>Last Name</label>
-				<input type="text" class="form-control" ng-model="lastname">
+				<input type="text" class="form-control" ng-model="newEmp.lastname">
 			</div>
 			<div class="form-group">
-				<label>Position</label>
-				<input type="text" class="form-control" ng-model="position">
+			  <label for="sel1">Position</label>
+			  <select class="form-control" id="sel1" ng-model="newEmp.position">
+			    <option ng-repeat="x in positions">{{x.JOB_TITLE}}</option>
+			  </select>
 			</div>
 				<button type="submit" class="btn btn-default">Add</button>
 		</form>
+		<!--<div class="dropdown">
+  			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+  			<span class="caret"></span></button>
+  			<ul class="dropdown-menu">
+			    <li ng-repeat="x in positions">{{x.JOB_TITLE}}</li>
+		  </ul>
+</div>-->
 	</div>
 </div>

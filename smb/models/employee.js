@@ -7,7 +7,7 @@ var employee = new mongoose.Schema({
 	FNAME: String,
 	LNAME: String,
 	JOB_ID: {
-		type: mongoose.Schema.Types.ObjectId, 
+		type: String, 
 		ref: 'Job'
 	},
 	TRACKING_INFO:{

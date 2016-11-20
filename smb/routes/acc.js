@@ -26,17 +26,17 @@ router.route('/')
 
     	var access = new Access();
 
-        access.ISCREATE = 
-    	access.ISREAD =
-        access.ISUPDATE =
-        access.ISDELETE = 
-        access.EMP_REF_ID =
-        access.SS_REF_ID =
-        access.USER_REF_ID
-    	access.TRACKING_INFO.CREATED_BY =
-        access.TRACKING_INFO.CREATED_DATE =
-        access.TRACKING_INFO.UPDATED_BY =
-        access.TRACKING_INFO.UPDATED_DATE =
+        access.ISCREATE = req.body.create;
+    	access.ISREAD = req.body.read;
+        access.ISUPDATE = req.body.update;
+        access.ISDELETE = req.body.delete;
+        access.EMP_REF_ID = req.body.empId;
+        access.SS_REF_ID = req.body.subsystem;
+        access.USER_REF_ID = req.body.username;
+    	access.TRACKING_INFO.CREATED_BY = req.body.created_by;
+        access.TRACKING_INFO.CREATED_DATE = req.body.creted_date;
+        access.TRACKING_INFO.UPDATED_BY = req.body.updated_by;
+        access.TRACKING_INFO.UPDATED_DATE = req.body.updated_date;
 
         access.save(function(err, access) {
         	if(err) {

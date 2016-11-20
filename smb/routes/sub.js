@@ -26,11 +26,11 @@ router.route('/')
 
     	var subsystem = new Subsystem();
 
-    	subsystem.SUB_SYSTEM = 
-    	subsystem.TRACKING_INFO.CREATED_BY =
-        subsystem.TRACKING_INFO.CREATED_DATE =
-        subsystem.TRACKING_INFO.UPDATED_BY =
-        subsystem.TRACKING_INFO.UPDATED_DATE =
+    	subsystem.SUB_SYSTEM = req.body.name;
+    	subsystem.TRACKING_INFO.CREATED_BY = req.body.created_by;
+        subsystem.TRACKING_INFO.CREATED_DATE = req.body.created_at;
+        subsystem.TRACKING_INFO.UPDATED_BY = req.body.updated_by;
+        subsystem.TRACKING_INFO.UPDATED_DATE = req.body.updated_date;
 
         subsystem.save(function(err, post) {
         	if(err) {
