@@ -3,31 +3,32 @@
 		<form ng-Submit="addAcc()">
 			<div class="form-group">
 				<label>Employee ID</label>
-				<input type="text" class="form-control">
+				<input type="text" class="form-control" ng-model="newAcc.empId">
 			</div>
 			<div class="form-group">
 				<label>Username</label>
-				<input type="text" class="form-control">
+				<input type="text" class="form-control" ng-model="newAcc.username">
 			</div>
 			<div class="form-group">
 				<label>Subsystem</label>
-				<input type="text" class="form-control">
+				<input type="text" class="form-control" ng-model="newAcc.subsystem">
 			</div>
+			<!-- Next 4 fields should be check boxes or something -->
 			<div class="form-group">
 				<label>Create</label>
-				<input type="text" class="form-control">
+				<input type="text" class="form-control" ng-model="newAcc.create">
 			</div>
 			<div class="form-group">
 				<label>Read</label>
-				<input type="text" class="form-control">
+				<input type="text" class="form-control" ng-model="newAcc.read">
 			</div>
 			<div class="form-group">
 				<label>Update</label>
-				<input type="text" class="form-control">
+				<input type="text" class="form-control" ng-model="newAcc.update">
 			</div>
 			<div class="form-group">
 				<label>Delete</label>
-				<input type="text" class="form-control">
+				<input type="text" class="form-control" ng-model="newAcc.delete">
 			</div>
 				<button type="submit" class="btn btn-default">Add</button>
 		</form>

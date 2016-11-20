@@ -8,12 +8,12 @@
 				<th>Created at</th>
 				<th>Updated by</th>
 				<th>Updated at</th>
-				<tr ng-repeat="x in cat">
-					<p>{{x.CATEGORY}}</p>
-					<p>{{x.TRACKING_INFO.CREATED_BY}}</p>
-					<p>{{x.TRACKING_INFO.CREATED_DATE}}</p>
-					<p>{{x.TRACKING_INFO.UPDATED_BY}}</p>
-					<p>{{x.TRACKING_INFO.CREATED_BY}}</p>
+				<tr ng-repeat="x in categories">
+					<td>{{x.CATEGORY}}</td>
+					<td>{{x.TRACKING_INFO.CREATED_BY}}</td>
+					<td>{{x.TRACKING_INFO.CREATED_DATE}}</td>
+					<td>{{x.TRACKING_INFO.UPDATED_BY}}</td>
+					<td>{{x.TRACKING_INFO.CREATED_BY}}</td>
 				</tr>
 			</table>
 		</div>

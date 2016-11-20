@@ -26,13 +26,13 @@ router.route('/')
 
     	var category = new Category();
 
-    	category.CATEGORY =
-    	category.TRACKING_INFO.CREATED_BY =
-        category.TRACKING_INFO.CREATED_DATE =
-        category.TRACKING_INFO.UPDATED_BY =
-        category.TRACKING_INFO.UPDATED_DATE =
+    	category.CATEGORY = req.body.name;
+    	category.TRACKING_INFO.CREATED_BY = req.body.created_by;
+        category.TRACKING_INFO.CREATED_DATE = req.body.created_at;
+        category.TRACKING_INFO.UPDATED_BY = req.body.updated_by;
+        category.TRACKING_INFO.UPDATED_DATE = req.body.updated_at;
 
-        transaction.save(function(err, category) {
+        category.save(function(err, category) {
         	if(err) {
         		return res.send(500, err);
         	}
@@ -65,7 +65,7 @@ router.route('/:id')
 	        category.TRACKING_INFO.UPDATED_BY =
 	        category.TRACKING_INFO.UPDATED_DATE =
 
-            transaction.save(function(err, category) {
+            category.save(function(err, category) {
                 if(err) {
                     return res.send(500, err);
                 }

@@ -1,31 +1,29 @@
-<div class="jumbotron">
+a<div class="jumbotron">
 	<div class="col-lg-12">
 		<div>
 			<table class="table table-bordered table-hover">
-				<thead>User Access</thead>
-				<th>Employee ID</th>
-				<th>Username</th>
-				<th>Subsystem</th>
-				<th>Create</th>
-				<th>Read</th>
-				<th>Update</th>
-				<th>Delete</th>
+				<thead>Vendors</thead>
+				<th>Vendor Name</th>
+				<th>Address</th>
+				<th>Status</th>
+				<th>Website</th>
+				<th>Comments</th>
+				<th>Email</th>
 				<th>Created by</th>
 				<th>Created at</th>
 				<th>Updated by</th>
 				<th>Updated at</th>
-				<tr ng-repeat="x in acc">
-					<p>{{x.EMP_REF_ID}}</p>
-					<p>{{x.USER_REF_ID}}</p>
-					<p>{{x.SS_REF_ID}}</p>
-					<p>{{x.ISCREATE}}</p>
-					<p>{{x.ISREAD}}</p>
-					<p>{{x.ISUPDATE}}</p>
-					<p>{{x.ISDELETE}}</p>
-					<p>{{x.TRACKING_INFO.CREATED_BY}}</p>
-					<p>{{x.TRACKING_INFO.CREATED_DATE}}</p>
-					<p>{{x.TRACKING_INFO.UPDATED_BY}}</p>
-					<p>{{x.TRACKING_INFO.CREATED_BY}}</p>
+				<tr ng-repeat="x in vendors">
+					<td>{{x.NAME}}</td>
+					<td>{{x.ADDRESS.STREET}} , {{x.ADDRESS.CITY}},{{X.ADDRESS.STATE}}</td>
+					<td>{{x.V_STATUS}}</td>
+					<td>{{x.WEBSITE}}</td>
+					<td>{{x.COMMENTS}}</td>
+					<td>{{x.EMAIL}}</td>
+					<td>{{x.TRACKING_INFO.CREATED_BY}}</td>
+					<td>{{x.TRACKING_INFO.CREATED_DATE}}</td>
+					<td>{{x.TRACKING_INFO.UPDATED_BY}}</td>
+					<td>{{x.TRACKING_INFO.CREATED_BY}}</td>
 				</tr>
 			</table>
 		</div>
