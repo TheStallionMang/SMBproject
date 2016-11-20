@@ -312,12 +312,13 @@ app.controller('authController', function($scope, $http, $rootScope, $location) 
 	};
 });
 
+
 // Access Controller
-app.factory('accFactory', function($http) {
+app.factory('accFactory', function($resource) {
 	return $resource('/acc/:id');
 });
 
-app.controller('accController', function(accFactory, $scope, $rootScope) {
+app.controller('accController', function(accFactory, $scope, $rootScope, $location) {
 	$scope.access = accFactory.query();
 	$scope.newAcc = {empId: '', username: '', subsystem: '', create: '', read: '', update: '', delete: '', created_at: ''};
 
@@ -332,18 +333,19 @@ app.controller('accController', function(accFactory, $scope, $rootScope) {
 	};
 });
 
+
 // Category Controller
-app.factory('catFactory', function($http) {
+app.factory('catFactory', function($resource) {
 	return $resource('/cat/:id');
 });
 
-app.controller('catController', function(catFactory, $scope, $rootScope) {
+app.controller('catController', function(catFactory, $scope, $rootScope, $location) {
 	$scope.categories = catFactory.query();
 	$scope.newCat = {name: '', created_at: ''};
 
 	$scope.addCat = function() {
 		$scope.newJob.created_at = Date.now();
-		CatFactory.save($scope.newCat, function() {
+		catFactory.save($scope.newCat, function() {
 			$scope.categories = catFactory.query();
 			$scope.newCat = {name: '', created_at: ''};
 			$location.path('/cat');
@@ -351,12 +353,13 @@ app.controller('catController', function(catFactory, $scope, $rootScope) {
 	};
 });
 
+
 // Customer Controller
-app.factory('custFactory', function($http) {
+app.factory('custFactory', function($resource) {
 	return $resource('/cust/:id');
 });
 
-app.controller('custController', function(custFactory, $scope, $rootScope) {
+app.controller('custController', function(custFactory, $scope, $rootScope, $location) {
 	$scope.customers = custFactory.query();
 	$scope.newCust = {firstname: '', lastname: '', street: '', city: '', state: '', payment: '', phone: '', email: '', created_at: ''};
 
@@ -370,12 +373,13 @@ app.controller('custController', function(custFactory, $scope, $rootScope) {
 	};
 });
 
+
 // Employee Controller
-app.factory('empFactory', function($http) {
+app.factory('empFactory', function($resource) {
 	return $resource('/emp/:id');
 });
 
-app.controller('empController', function(empFactory, $scope, $rootScope) {
+app.controller('empController', function(empFactory, $scope, $rootScope, $location) {
 	$scope.employees = empFactory.query();
 	$scope.newEmp = {empId: '', ssn: '', firstname: '', lastname: '', position: '', created_at: ''};
 
@@ -389,12 +393,13 @@ app.controller('empController', function(empFactory, $scope, $rootScope) {
 	};
 });
 
+
 // Inventory Controller
-app.factory('invFactory', function($http) {
+app.factory('invFactory', function($resource) {
 	return $resource('/inv/:id');
 });
 
-app.controller('invController', function(invFactory, $scope, $rootScope) {
+app.controller('invController', function(invFactory, $scope, $rootScope, $location) {
 	$scope.items = invFactory.query();
 	$scope.newItem = {name: '', condition: '', price: '', vendor: '', category: '', orderNum: '', created_at: ''};
 
@@ -421,18 +426,18 @@ app.controller('jobController', function(jobFactory, $scope, $rootScope, $locati
 		$scope.newJob.created_at = Date.now();
 		jobFactory.save($scope.newJob, function() {
 			$scope.jobs = jobFactory.query();
-			$scope.newJob = {title: '', created_at: ''};};
+			$scope.newJob = {title: '', created_at: ''};
 			$location.path('/job');
 		});
 	};
 });
 
 // Order Controller
-app.factory('orderFactory', function($http) {
+app.factory('orderFactory', function($resource) {
 	return $resource('/order/:id');
 });
 
-app.controller('orderController', function(orderFactory, $scope, $rootScope) {
+app.controller('orderController', function(orderFactory, $scope, $rootScope, $location) {
 	$scope.orders = orderFactory.query();
 	$scope.newOrder = {vendor: '', item: '', street: '', city: '', state: '', shipping: '', receipt: '', created_at: ''};
 
@@ -446,12 +451,13 @@ app.controller('orderController', function(orderFactory, $scope, $rootScope) {
 	};
 });
 
+
 // Transaction Controller
-app.factory('transFactory', function($http) {
+app.factory('transFactory', function($resource) {
 	return $resource('/trans/:id');
 });
 
-app.controller('transController', function(transFactory, $scope, $rootScope) {
+app.controller('transController', function(transFactory, $scope, $rootScope, $location) {
 	$scope.transactions = transFactory.query();
 	$scope.newTrans = {title: '', created_at: ''};
 
@@ -459,19 +465,20 @@ app.controller('transController', function(transFactory, $scope, $rootScope) {
 		$scope.newJob.created_at = Date.now();
 		transFactory.save($scope.newTrans, function() {
 			$scope.transactions = jobFactory.query();
-			$scope.newTrans = {title: ''};
+			$scope.newTrans = {title: '', created_at: ''};
 			$location.path('/trans');
 		});
 	};
 });
 
+
 // User Controller... IS THIS NEEDED??? Only need to update a user...
 // registration handles creation?
-app.factory('userFactory', function($http) {
+app.factory('userFactory', function($resource) {
 	return $resource('/user/:id');
 });
 
-app.controller('userController', function(userFactory, $scope, $rootScope) {
+app.controller('userController', function(userFactory, $scope, $rootScope, $location) {
 	$scope.users = userFactory.query();
 	$scope.newUser = {title: '', created_at: ''};
 
@@ -485,11 +492,13 @@ app.controller('userController', function(userFactory, $scope, $rootScope) {
 	};
 });
 
-// Vendor Controller
-app.factory('vendFactory', function($http) {
-	return $resource('/vend/:id');
 
-app.controller('vendController', function(vendFactory, $scope, $rootScope) {
+// Vendor Controller
+app.factory('vendFactory', function($resource) {
+	return $resource('/vend/:id');
+});
+
+app.controller('vendController', function(vendFactory, $scope, $rootScope, $location) {
 	$scope.vendors = vendFactory.query();
 	$scope.newVendor = {name: '', street: '', city: '', state: '', website: '', comments: '', email: '', created_at: ''};
 
