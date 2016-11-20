@@ -311,6 +311,9 @@ app.controller('authController', function($scope, $http, $rootScope, $location) 
 	};
 });
 
+app.factory('subFactory', function($resource) {
+	return $resource('/sub/:id');
+});
 
 // Access Controller
 app.factory('accFactory', function($resource) {
@@ -319,6 +322,7 @@ app.factory('accFactory', function($resource) {
 
 app.controller('accController', function(accFactory, $scope, $rootScope, $location) {
 	$scope.access = accFactory.query();
+	$scope.subs = subFactory.query();
 	$scope.newAcc = {username: '', subsystem: '', create: '', read: '', update: '', delete: '', created_at: ''};
 
 	$scope.addAcc = function() {

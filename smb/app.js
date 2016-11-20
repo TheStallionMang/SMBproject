@@ -3,6 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
@@ -21,7 +22,11 @@ require('./models/vendor');
 require('./models/vendorOrder');
 var mongoose = require('mongoose');
 var dbConfig = require('./db');
-mongoose.connect(dbConfig.url);
+mongoose.connect(dbConfig.url, function(err) {
+	if (err) {
+		console.log(err);
+	}
+});
 
 // All API routes
 var routes = require('./routes/index');
@@ -50,8 +55,9 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(session({
 	secret: 'SESSION SECRET',
-  saveUninitialized: true,
-  resave: false
+	resave: false,
+	saveUninitialized: false,
+  	store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -60,7 +66,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', routes);
+app.use('/', function (req, res, next) {
+    if (req.isAuthenticated()) {
+        // returns true if a user already logged in.
+        console.log(req.user);
+    }
+    next();
+});
 app.use('/auth', auth);
 app.use('/acc', acc);
 app.use('/cat', cat);

@@ -6,8 +6,10 @@
 				<input type="text" class="form-control" ng-model="newAcc.username">
 			</div>
 			<div class="form-group">
-				<label>Subsystem</label>
-				<input type="text" class="form-control" ng-model="newAcc.subsystem">
+			  <label for="sel1">Subsystem</label>
+			  <select class="form-control" id="sel1" ng-model="newAcc.subsystem">
+			    <option ng-repeat="x in subs">{{x.SUB_SYSTEM}}</option>
+			  </select>
 			</div>
 			<!-- Next 4 fields should be check boxes or something -->
 			<div class="form-group">
