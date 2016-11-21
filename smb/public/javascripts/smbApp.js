@@ -15,7 +15,7 @@ var app = angular.module('smbApp', ['ngRoute', 'ngResource']).run(function($root
     	});
   	};
 
-  	$rootScope.loggedIn();
+  	// $rootScope.loggedIn();
 	
 	$rootScope.authenticated = false;
 	$rootScope.current_user = '';
