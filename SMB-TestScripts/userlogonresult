@@ -1,0 +1,11 @@
+[13:20:19] I/hosted - Using the selenium server at http://localhost:4444/wd/hub
+[13:20:19] I/launcher - Running 1 instances of WebDriver
+
+    Sierra Mountain Bike User Logon Process: - Creating a new user:   ․ Sierra Mountain Bike User Logon Process: - Creating a new user: 2047ms
+    Sierra Mountain Bike User Logon Process: - Creating a new employee Access:   ․ Sierra Mountain Bike User Logon Process: - Creating a new employee Access: 1950ms
+    Sierra Mountain Bike User Logon Process: - Creating access for the Employees:   ․ Sierra Mountain Bike User Logon Process: - Creating access for the Employees: 1713ms
+
+  3 passing (6s)
+
+[13:20:26] I/launcher - 0 instance(s) of WebDriver still running
+[13:20:26] I/launcher - chrome #01 passed

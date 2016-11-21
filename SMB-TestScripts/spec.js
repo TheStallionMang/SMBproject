@@ -3,8 +3,9 @@ var chai        = require('chai'),
     expect      = chai.expect;
 
 
-describe('Protractor Demo App', function() {
+describe('Sierra Mountain Bike User Logon Process: -', function() {
     it('Creating a new user',function(){
+        this.timeout(5000);                
         browser.get('http://127.0.0.1:3000/#/register')
             .then(function(done){
                 element(by.model('user.username')).sendKeys('Kibret');
@@ -13,6 +14,7 @@ describe('Protractor Demo App', function() {
             })
     });
     it('Creating a new employee Access',function(){
+        this.timeout(5000);
         browser.get('http://127.0.0.1:3000/#/login')
             .then(function(done){
                 element(by.model('user.username')).sendKeys('Kibret');
@@ -21,6 +23,7 @@ describe('Protractor Demo App', function() {
             })
     });
     it('Creating access for the Employees',function(){
+        this.timeout(5000);
         browser.get('http://127.0.0.1:3000/#/acc-add')
             .then(function(done){
                 element(by.model('newAcc.username')).sendKeys('Kibret');
