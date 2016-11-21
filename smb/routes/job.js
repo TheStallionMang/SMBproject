@@ -3,7 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Job = mongoose.model('Job');
 
-/*router.use(function(req, res, next) {
+router.use(function(req, res, next) {
 	if (req.method === "GET") {
 		//continue to the next middleware or request handler
 		return next();
@@ -16,7 +16,6 @@ var Job = mongoose.model('Job');
 	//user authenticated continue to next middleware or handler
 	return next();
 });
-*/
 
 //api for all jobs
 router.route('/')

@@ -3,11 +3,8 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Vendor = mongoose.model('Vendor');
 
-/*router.use(function(req, res, next) {
-	if (req.method === "GET") {
-		//continue to the next middleware or request handler
-		return next();
-	}
+router.use(function(req, res, next) {
+	
 	if (!req.isAuthenticated()) {
 		//user not authenticates, redirect to login
 		return res.redirect('/#login');
@@ -16,7 +13,6 @@ var Vendor = mongoose.model('Vendor');
 	//user authenticated continue to next middleware or handler
 	return next();
 });
-*/
 
 //api for all vendors
 router.route('/')

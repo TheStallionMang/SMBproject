@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Inventory = mongoose.model('Inventory');
 var Order = mongoose.model('Order');
 
-/*router.use(function(req, res, next) {
+router.use(function(req, res, next) {
 	if (req.method === "GET") {
 		//continue to the next middleware or request handler
 		return next();
@@ -17,7 +17,6 @@ var Order = mongoose.model('Order');
 	//user authenticated continue to next middleware or handler
 	return next();
 });
-*/
 
 //api for all inventory items
 router.route('/')

@@ -29,11 +29,19 @@
                 </button>
                 <a class="navbar-brand" href="#/">Home</a>
             
-              </div>
+            </div>
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
+                  <li><a class="navbar-right" ng-show="authenticated" href="#/acc">Access</a></li>
+                  <li><a class="navbar-right" ng-show="authenticated" href="#/cat">Categories</a></li>
+                  <li><a class="navbar-right" ng-show="authenticated" href="#/cust">Customers</a></li>
+                  <li><a class="navbar-right" ng-show="authenticated" href="#/emp">Employees</a></li>
                   <li><a class="navbar-right" href="#/inv">Inventory</a></li>
-                  <li><a href="#/order" ng-show="authenticated">Order</a></li>
+                  <li><a class="navbar-right" ng-show="authenticated" href="#/job">Jobs</a></li>
+                  <li><a ng-show="authenticated" href="#/order" ng-show="authenticated">Orders</a></li>
+                  <li><a class="navbar-right" ng-show="authenticated" href="#/trans">Transactions</a></li>
+                  <li><a class="navbar-right" ng-show="authenticated" href="#/user">Users</a></li>
+                  <li><a class="navbar-right" ng-show="authenticated" href="#/vend">Vendors</a></li>
                   <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopop="true" aria-expanded="false" ng-show="authenticated">Signed is as {{current_user}}<span class="caret"></span></a>
                       <ul class="dropdown-menu">

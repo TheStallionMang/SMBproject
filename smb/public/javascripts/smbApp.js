@@ -251,11 +251,6 @@ app.config(function($routeProvider) {
 		controller: 'userController'
 	})
 
-	.when('/middleman', {
-		templateUrl: 'middleman.html',
-		controller: 'userController'
-	})
-
 	/*	
 		*** VENDORS ***
 	*/
@@ -276,8 +271,11 @@ app.config(function($routeProvider) {
 	.when('/vend-add', {
 		templateUrl: 'vend-add.html',
 		controller: 'vendController'
-	});
+	})
 
+	.otherwise({
+		redirectTo: '/'
+	});
 });
 
 // Authentication Controller
@@ -328,6 +326,8 @@ app.controller('accController', function(accFactory, subFactory, $scope, $rootSc
 	$scope.addAcc = function() {
 		$scope.newAcc.created_at = Date.now();
 		$scope.newAcc.created_by = $rootScope.current_user;
+		$scope.newAcc.updated_by = $rootScope.current_user;
+		$scope.newAcc.updated_at = Date.now();
 		accFactory.save($scope.newAcc, function() {
 			$scope.access = accFactory.query();
 			$scope.newAcc = {username: '', subsystem: '', create: '', read: '', update: '', delete: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
@@ -349,6 +349,8 @@ app.controller('catController', function(catFactory, $scope, $rootScope, $locati
 	$scope.addCat = function() {
 		$scope.newCat.created_at = Date.now();
 		$scope.newCat.created_by = $rootScope.current_user;
+		$scope.newCat.updated_by = $rootScope.current_user;
+		$scope.newCat.updated_at = Date.now();
 		catFactory.save($scope.newCat, function() {
 			$scope.categories = catFactory.query();
 			$scope.newCat = {name: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
@@ -370,6 +372,8 @@ app.controller('custController', function(custFactory, $scope, $rootScope, $loca
 	$scope.addCust = function() {
 		$scope.newCust.created_at = Date.now();
 		$scope.newCust.created_by = $rootScope.current_user;
+		$scope.newCust.updated_by = $rootScope.current_user;
+		$scope.newCust.updated_at = Date.now();
 		custFactory.save($scope.newCust, function() {
 			$scope.customers = custFactory.query();
 			$scope.newCust = {firstname: '', lastname: '', street: '', city: '', state: '', payment: '', phone: '', email: '', card: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
@@ -392,6 +396,8 @@ app.controller('empController', function(empFactory, jobFactory, $scope, $rootSc
 	$scope.addEmp = function() {
 		$scope.newEmp.created_at = Date.now();
 		$scope.newEmp.created_by = $rootScope.current_user;
+		$scope.newEmp.updated_by = $rootScope.current_user;
+		$scope.newEmp.updated_at = Date.now();
 		empFactory.save($scope.newEmp, function() {
 			$scope.employees = empFactory.query();
 			$scope.newEmp = {ssn: '', firstname: '', lastname: '', position: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
@@ -415,6 +421,8 @@ app.controller('invController', function(invFactory, orderFactory, catFactory, $
 	$scope.addInv = function() {
 		$scope.newItem.created_at = Date.now();
 		$scope.newItem.created_by = $rootScope.current_user;
+		$scope.newItem.updated_by = $rootScope.current_user;
+		$scope.newItem.updated_at = Date.now();
 		invFactory.save($scope.newItem, function() {
 			$scope.items = invFactory.query();
 			$scope.newItem = {name: '', condition: '', price: '', category: '', orderNum: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
@@ -435,6 +443,8 @@ app.controller('jobController', function(jobFactory, $scope, $rootScope, $locati
 	$scope.addJob = function() {
 		$scope.newJob.created_at = Date.now();
 		$scope.newJob.created_by = $rootScope.current_user;
+		$scope.newJob.updated_by = $rootScope.current_user;
+		$scope.newJob.updated_at = Date.now();
 		jobFactory.save($scope.newJob, function() {
 			$scope.jobs = jobFactory.query();
 			$scope.newJob = {title: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
@@ -456,6 +466,8 @@ app.controller('orderController', function(orderFactory, vendFactory, $scope, $r
 	$scope.addOrder = function() {
 		$scope.newOrder.created_at = Date.now();
 		$scope.newOrder.created_by = $rootScope.current_user;
+		$scope.newOrder.updated_by = $rootScope.current_user;
+		$scope.newOrder.updated_at = Date.now();
 		orderFactory.save($scope.newOrder, function() {
 			$scope.orders = orderFactory.query();
 			$scope.newOrder = {vendor: '', item: '', street: '', city: '', state: '', shipping: '', receipt: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
@@ -477,6 +489,8 @@ app.controller('transController', function(transFactory, $scope, $rootScope, $lo
 	$scope.addTrans = function() {
 		$scope.newTrans.created_at = Date.now();
 		$scope.newTrans.created_by = $rootScope.current_user;
+		$scope.newTrans.updated_by = $rootScope.current_user;
+		$scope.newTrans.updated_at = Date.now();
 		transFactory.save($scope.newTrans, function() {
 			$scope.transactions = transFactory.query();
 			$scope.newTrans = {transType: '', status: '', shipType: '', total: '', delivStatus: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
@@ -518,6 +532,8 @@ app.controller('vendController', function(vendFactory, $scope, $rootScope, $loca
 	$scope.addVend = function() {
 		$scope.newVendor.created_at = Date.now();
 		$scope.newVendor.created_by = $rootScope.current_user;
+		$scope.newVendor.updated_by = $rootScope.current_user;
+		$scope.newVendor.updated_at = Date.now();
 		vendFactory.save($scope.newVendor, function() {
 			$scope.vendors = vendFactory.query();
 			$scope.newVendor = {name: '', street: '', city: '', state: '', status: '', website: '', comments: '', email: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};

@@ -2,7 +2,8 @@
     <div class="col-lg-12">
         <div>
             <table class="table table-bordered table-hover">
-                <thead>Transactions</thead>
+                <thead>Transactions</thead></br>
+				<button><a href="#/trans-add" ng-show="authenticated">+</a></button>
                 <th>Transaction ID</th>
                 <th>Transaction Type</th>
                 <th>Schedule Status</th>
@@ -25,7 +26,7 @@
                     <td>{{x.TRACKING_INFO.CREATED_BY}}</td>
                     <td>{{x.TRACKING_INFO.CREATED_DATE | date:"h:mma MMM d, y"}}</td>
                     <td>{{x.TRACKING_INFO.UPDATED_BY}}</td>
-                    <td>{{x.TRACKING_INFO.UPDATED_AT}}</td>
+                    <td>{{x.TRACKING_INFO.UPDATED_DATE | date:"h:mma MMM d, y"}}</td>
                 </tr>
             </table>
         </div>

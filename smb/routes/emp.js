@@ -4,11 +4,8 @@ var mongoose = require('mongoose');
 var Employee = mongoose.model('Employee');
 var Job = mongoose.model('Job');
 
-/*router.use(function(req, res, next) {
-	if (req.method === "GET") {
-		//continue to the next middleware or request handler
-		return next();
-	}
+router.use(function(req, res, next) {
+	
 	if (!req.isAuthenticated()) {
 		//user not authenticates, redirect to login
 		return res.redirect('/#login');
@@ -17,7 +14,6 @@ var Job = mongoose.model('Job');
 	//user authenticated continue to next middleware or handler
 	return next();
 });
-*/
 
 //api for all employees
 router.route('/')

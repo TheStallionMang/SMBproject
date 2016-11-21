@@ -2,7 +2,8 @@
 	<div class="col-lg-12">
 		<div>
 			<table class="table table-bordered table-hover">
-				<thead>Vendors</thead>
+				<thead>Vendors</thead></br>
+				<button><a href="#/vend-add" ng-show="authenticated">+</a></button>
 				<th>Vendor Name</th>
 				<th>Address</th>
 				<th>Status</th>
@@ -23,10 +24,9 @@
 					<td>{{x.TRACKING_INFO.CREATED_BY}}</td>
 					<td>{{x.TRACKING_INFO.CREATED_DATE | date:"h:mma MMM d, y"}}</td>
 					<td>{{x.TRACKING_INFO.UPDATED_BY}}</td>
-					<td>{{x.TRACKING_INFO.CREATED_BY}}</td>
+					<td>{{x.TRACKING_INFO.UPDATED_DATE | date:"h:mma MMM d, y"}}</td>
 				</tr>
 			</table>
 		</div>
 	</div>
-    <a href="#/vend-add" ng-show="authenticated">Add</a>
 </div>
