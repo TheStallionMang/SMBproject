@@ -1,0 +1,34 @@
+<div class="jumbotron">
+	<div class="container">
+		<form ng-submit="addAcc()">
+			<div class="form-group">
+				<label>Username</label>
+				<input type="text" class="form-control" ng-model="newAcc.username">
+			</div>
+			<div class="form-group">
+			  <label for="sel1">Subsystem</label>
+			  <select class="form-control" id="sel1" ng-model="newAcc.subsystem">
+			    <option ng-repeat="x in subs">{{x.SUB_SYSTEM}}</option>
+			  </select>
+			</div>
+			<!-- Next 4 fields should be check boxes or something -->
+			<div class="form-group">
+				<label>Create</label>
+				<input type="checkbox" class="form-control" ng-model="newAcc.create">
+			</div>
+			<div class="form-group">
+				<label>Read</label>
+				<input type="checkbox" class="form-control" ng-model="newAcc.read">
+			</div>
+			<div class="form-group">
+				<label>Update</label>
+				<input type="checkbox" class="form-control" ng-model="newAcc.update">
+			</div>
+			<div class="form-group">
+				<label>Delete</label>
+				<input type="checkbox" class="form-control" ng-model="newAcc.delete">
+			</div>
+				<button type="submit" class="btn btn-default">Add</button>
+		</form>
+	</div>
+</div>

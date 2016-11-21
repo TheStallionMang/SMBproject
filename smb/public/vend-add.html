@@ -1,0 +1,39 @@
+<div class="jumbotron">
+	<div class="container">
+		<form ng-Submit="addVend()">
+			<div class="form-group">
+				<label>Name</label>
+				<input type="text" class="form-control" ng-model="newVendor.name">
+			</div>
+			<div class="form-group">
+				<label>Street</label>
+				<input type="text" class="form-control" ng-model="newVendor.street">
+			</div>
+			<div class="form-group">
+				<label>City</label>
+				<input type="text" class="form-control" ng-model="newVendor.city">
+			</div>
+			<div class="form-group">
+				<label>State</label>
+				<input type="text" class="form-control" ng-model="newVendor.state">
+			</div>
+			<div class="form-group">
+				<label>Status</label>
+				<input type="text" class="form-control" ng-model="newVendor.status">
+			</div>
+			<div class="form-group">
+				<label>Website</label>
+				<input type="text" class="form-control" ng-model="newVendor.website">
+			</div>
+			<div class="form-group">
+				<label>Comments</label>
+				<input type="text" class="form-control" ng-model="newVendor.comments">
+			</div>
+			<div class="form-group">
+				<label>Email</label>
+				<input type="text" class="form-control" ng-model="newVendor.email">
+			</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+		</form>
+	</div>
+</div>

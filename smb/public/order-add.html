@@ -1,0 +1,38 @@
+<div class="jumbotron">
+	<div class="container">
+		<form ng-Submit="addOrder()">
+			<div class="form-group">
+			  <label for="sel1">Vendor</label>
+			  <select class="form-control" id="sel1" ng-model="newEmp.position">
+			    <option ng-repeat="x in vendors">{{x.NAME}}</option>
+			  </select>
+			</div>
+			<div class="form-group">
+				<label>Item</label>
+				<input type="text" class="form-control" ng-model="street">
+			</div>
+			<!-- Need to be able to add multiple items -->
+			<div class="form-group">
+				<label>Address Street</label>
+				<input type="text" class="form-control" ng-model="street">
+			</div>
+			<div class="form-group">
+				<label>Address City</label>
+				<input type="text" class="form-control" ng-model="city">
+			</div>
+			<div class="form-group">
+				<label>Address State</label>
+				<input type="text" class="form-control" ng-model="state">
+			</div>
+			<div class="form-group">
+				<label>Shipping Type</label>
+				<input type="text" class="form-control" ng-model="shipping">
+			</div>
+			<div class="form-group">
+				<label>Desired Receipt Date</label>
+				<input type="text" class="form-control" ng-model="receipt">
+			</div>
+				<button type="submit" class="btn btn-default">Add</button>
+		</form>
+	</div>
+</div>

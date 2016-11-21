@@ -1,0 +1,21 @@
+<div class="jumbotron">
+	<div class="col-lg-12">
+		<div>
+			<table class="table table-bordered table-hover">
+				<thead>Jobs</thead>
+				<th>Title</th>
+				<th>Created by</th>
+				<th>Created at</th>
+				<th>Updated by</th>
+				<th>Updated at</th>
+				<tr ng-repeat="x in jobs">
+					<td>{{x.JOB_TITLE}}</td>
+					<td>{{x.TRACKING_INFO.CREATED_BY}}</td>
+					<td>{{x.TRACKING_INFO.CREATED_DATE | date:"h:mma MMM d, y"}}</td>
+					<td>{{x.TRACKING_INFO.UPDATED_BY}}</td>
+					<td>{{x.TRACKING_INFO.UPDATED_AT}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
