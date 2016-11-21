@@ -320,17 +320,17 @@ app.factory('accFactory', function($resource) {
 	return $resource('/acc/:id');
 });
 
-app.controller('accController', function(accFactory, $scope, $rootScope, $location) {
+app.controller('accController', function(accFactory, subFactory, $scope, $rootScope, $location) {
 	$scope.access = accFactory.query();
 	$scope.subs = subFactory.query();
-	$scope.newAcc = {username: '', subsystem: '', create: '', read: '', update: '', delete: '', created_at: ''};
+	$scope.newAcc = {username: '', subsystem: '', create: '', read: '', update: '', delete: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 
 	$scope.addAcc = function() {
 		$scope.newAcc.created_at = Date.now();
+		$scope.newAcc.created_by = $rootScope.current_user;
 		accFactory.save($scope.newAcc, function() {
 			$scope.access = accFactory.query();
-			$scope.newAcc = {username: '', subsystem: '', create: '', read: '', update: '', delete: '', created_at: ''};
-
+			$scope.newAcc = {username: '', subsystem: '', create: '', read: '', update: '', delete: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 			$location.path('/acc');
 		});
 	};
@@ -344,13 +344,14 @@ app.factory('catFactory', function($resource) {
 
 app.controller('catController', function(catFactory, $scope, $rootScope, $location) {
 	$scope.categories = catFactory.query();
-	$scope.newCat = {name: '', created_at: ''};
+	$scope.newCat = {name: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 
 	$scope.addCat = function() {
 		$scope.newCat.created_at = Date.now();
+		$scope.newCat.created_by = $rootScope.current_user;
 		catFactory.save($scope.newCat, function() {
 			$scope.categories = catFactory.query();
-			$scope.newCat = {name: '', created_at: ''};
+			$scope.newCat = {name: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 			$location.path('/cat');
 		});
 	};
@@ -364,13 +365,14 @@ app.factory('custFactory', function($resource) {
 
 app.controller('custController', function(custFactory, $scope, $rootScope, $location) {
 	$scope.customers = custFactory.query();
-	$scope.newCust = {firstname: '', lastname: '', street: '', city: '', state: '', payment: '', phone: '', email: '', card: '', created_at: ''};
+	$scope.newCust = {firstname: '', lastname: '', street: '', city: '', state: '', payment: '', phone: '', email: '', card: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 
 	$scope.addCust = function() {
 		$scope.newCust.created_at = Date.now();
+		$scope.newCust.created_by = $rootScope.current_user;
 		custFactory.save($scope.newCust, function() {
 			$scope.customers = custFactory.query();
-			$scope.newCust = {firstname: '', lastname: '', street: '', city: '', state: '', payment: '', phone: '', email: '', card: '', created_at: ''};
+			$scope.newCust = {firstname: '', lastname: '', street: '', city: '', state: '', payment: '', phone: '', email: '', card: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 			$location.path('/cust');
 		});
 	};
@@ -385,13 +387,14 @@ app.factory('empFactory', function($resource) {
 app.controller('empController', function(empFactory, jobFactory, $scope, $rootScope, $location) {
 	$scope.employees = empFactory.query();
 	$scope.positions = jobFactory.query();
-	$scope.newEmp = {ssn: '', firstname: '', lastname: '', position: '', created_at: ''};
+	$scope.newEmp = {ssn: '', firstname: '', lastname: '', position: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 
 	$scope.addEmp = function() {
 		$scope.newEmp.created_at = Date.now();
+		$scope.newEmp.created_by = $rootScope.current_user;
 		empFactory.save($scope.newEmp, function() {
 			$scope.employees = empFactory.query();
-			$scope.newEmp = {ssn: '', firstname: '', lastname: '', position: '', created_at: ''};
+			$scope.newEmp = {ssn: '', firstname: '', lastname: '', position: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 			$location.path('/emp');
 		});
 	};
@@ -403,15 +406,18 @@ app.factory('invFactory', function($resource) {
 	return $resource('/inv/:id');
 });
 
-app.controller('invController', function(invFactory, $scope, $rootScope, $location) {
+app.controller('invController', function(invFactory, orderFactory, catFactory, $scope, $rootScope, $location) {
 	$scope.items = invFactory.query();
-	$scope.newItem = {name: '', condition: '', price: '', vendor: '', category: '', orderNum: '', created_at: ''};
+	$scope.orders = orderFactory.query();
+	$scope.categories = catFactory.query();
+	$scope.newItem = {name: '', condition: '', price: '', category: '', orderNum: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 
 	$scope.addInv = function() {
 		$scope.newItem.created_at = Date.now();
+		$scope.newItem.created_by = $rootScope.current_user;
 		invFactory.save($scope.newItem, function() {
 			$scope.items = invFactory.query();
-			$scope.newItem = {name: '', condition: '', price: '', vendor: '', category: '', orderNum: '', created_at: ''};
+			$scope.newItem = {name: '', condition: '', price: '', category: '', orderNum: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 			$location.path('/inv');
 		});
 	};
@@ -424,13 +430,14 @@ app.factory('jobFactory', function($resource) {
 
 app.controller('jobController', function(jobFactory, $scope, $rootScope, $location) {
 	$scope.jobs = jobFactory.query();
-	$scope.newJob = {title: '', created_at: ''};
+	$scope.newJob = {title: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 
 	$scope.addJob = function() {
 		$scope.newJob.created_at = Date.now();
+		$scope.newJob.created_by = $rootScope.current_user;
 		jobFactory.save($scope.newJob, function() {
 			$scope.jobs = jobFactory.query();
-			$scope.newJob = {title: '', created_at: ''};
+			$scope.newJob = {title: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 			$location.path('/job');
 		});
 	};
@@ -444,24 +451,14 @@ app.factory('orderFactory', function($resource) {
 app.controller('orderController', function(orderFactory, vendFactory, $scope, $rootScope, $location) {
 	$scope.orders = orderFactory.query();
 	$scope.vendors = vendFactory.query();
-	$scope.newOrder = {vendor: '', item: '', street: '', city: '', state: '', shipping: '', receipt: '', created_at: ''};
-	$scope.items = [{id: 'choice1'}];
-
-	$scope.addItem = function() {
-		var newItem = $scope.items.length+1;
-		$scope.items.push({'id':'choice' + newItem});
-	};
-
-	$scope.removeItem = function() {
-		var lastItem = $scope.items.length-1;
-		$scope.items.splice(lastItem);
-	};
-
+	$scope.newOrder = {vendor: '', item: '', street: '', city: '', state: '', shipping: '', receipt: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
+	
 	$scope.addOrder = function() {
 		$scope.newOrder.created_at = Date.now();
+		$scope.newOrder.created_by = $rootScope.current_user;
 		orderFactory.save($scope.newOrder, function() {
 			$scope.orders = orderFactory.query();
-			$scope.newOrder = {vendor: '', item: '', street: '', city: '', state: '', shipping: '', receipt: '', created_at: ''};
+			$scope.newOrder = {vendor: '', item: '', street: '', city: '', state: '', shipping: '', receipt: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 			$location.path('/order');
 		});
 	};
@@ -475,13 +472,14 @@ app.factory('transFactory', function($resource) {
 
 app.controller('transController', function(transFactory, $scope, $rootScope, $location) {
 	$scope.transactions = transFactory.query();
-	$scope.newTrans = {title: '', created_at: ''};
+	$scope.newTrans = {transType: '', status: '', shipType: '', total: '', delivStatus: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 
 	$scope.addTrans = function() {
-		$scope.newJob.created_at = Date.now();
+		$scope.newTrans.created_at = Date.now();
+		$scope.newTrans.created_by = $rootScope.current_user;
 		transFactory.save($scope.newTrans, function() {
-			$scope.transactions = jobFactory.query();
-			$scope.newTrans = {title: '', created_at: ''};
+			$scope.transactions = transFactory.query();
+			$scope.newTrans = {transType: '', status: '', shipType: '', total: '', delivStatus: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 			$location.path('/trans');
 		});
 	};
@@ -515,13 +513,14 @@ app.factory('vendFactory', function($resource) {
 
 app.controller('vendController', function(vendFactory, $scope, $rootScope, $location) {
 	$scope.vendors = vendFactory.query();
-	$scope.newVendor = {name: '', street: '', city: '', state: '', status: '', website: '', comments: '', email: '', created_at: ''};
+	$scope.newVendor = {name: '', street: '', city: '', state: '', status: '', website: '', comments: '', email: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 
 	$scope.addVend = function() {
 		$scope.newVendor.created_at = Date.now();
+		$scope.newVendor.created_by = $rootScope.current_user;
 		vendFactory.save($scope.newVendor, function() {
 			$scope.vendors = vendFactory.query();
-			$scope.newVendor = {name: '', street: '', city: '', state: '', status: '', website: '', comments: '', email: '', created_at: ''};
+			$scope.newVendor = {name: '', street: '', city: '', state: '', status: '', website: '', comments: '', email: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 			$location.path('/vend');
 		});
 	};

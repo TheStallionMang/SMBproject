@@ -26,21 +26,20 @@ router.route('/')
 
     	var order = new Order();
 
-    	order.ORDER_DETAILS = 
-    	order.DELIVERY_ADDRESS.STREET =
-    	order.DELIVERY_ADDRESS.CITY =
-    	order.DELIVERY_ADDRESS.STATE =
-    	order.SHIPPING_TYPE = 
-    	order.DESIRED_RECEIPT_DATE = 
-    	order.EST_SHIPPING_COST = 
-    	order.TOTAL_COST = 
-    	order.IS_APPROVED = 
-    	order.EMP_REF_ID =
-    	order.VENDOR_REF_ID = 
-    	order.TRACKING_INFO.CREATED_BY =
-        order.TRACKING_INFO.CREATED_DATE =
-        order.TRACKING_INFO.UPDATED_BY =
-        order.TRACKING_INFO.UPDATED_DATE =
+    	order.ORDER_DETAILS = req.body.item;
+    	order.DELIVERY_ADDRESS.STREET = req.body.street;
+    	order.DELIVERY_ADDRESS.CITY = req.body.city;
+    	order.DELIVERY_ADDRESS.STATE = req.body.state;
+    	order.SHIPPING_TYPE = req.body.shipping;
+    	order.DESIRED_RECEIPT_DATE = req.body.receipt;
+    	//order.TOTAL_COST = 
+    	//order.IS_APPROVED = 
+    	//order.EMP_REF_ID =
+    	order.VENDOR_REF_ID = req.body.vendor
+    	order.TRACKING_INFO.CREATED_BY = req.body.created_by;
+        order.TRACKING_INFO.CREATED_DATE = req.body.created_at;
+        order.TRACKING_INFO.UPDATED_BY = req.body.updated_by;
+        order.TRACKING_INFO.UPDATED_DATE = req.body.updated_at;
 
         order.save(function(err, order) {
         	if(err) {

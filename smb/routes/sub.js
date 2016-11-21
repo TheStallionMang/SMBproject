@@ -32,7 +32,7 @@ router.route('/')
         subsystem.TRACKING_INFO.UPDATED_BY = req.body.updated_by;
         subsystem.TRACKING_INFO.UPDATED_DATE = req.body.updated_date;
 
-        subsystem.save(function(err, post) {
+        subsystem.save(function(err, subsystem) {
         	if(err) {
         		return res.send(500, err);
         	}
