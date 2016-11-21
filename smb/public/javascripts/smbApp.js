@@ -320,7 +320,7 @@ app.factory('accFactory', function($resource) {
 	return $resource('/acc/:id');
 });
 
-app.controller('accController', function(accFactory, $scope, $rootScope, $location) {
+app.controller('accController', function(accFactory, subFactory, $scope, $rootScope, $location) {
 	$scope.access = accFactory.query();
 	$scope.subs = subFactory.query();
 	$scope.newAcc = {username: '', subsystem: '', create: '', read: '', update: '', delete: '', created_at: ''};

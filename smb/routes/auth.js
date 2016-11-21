@@ -22,6 +22,7 @@ module.exports = function(passport){
     //is logged in
     router.post('/isloggedin', function(req, res){
     if(req.isAuthenticated()) {
+    	console.log(req.user);
         res.send({state: 'success', user: req.user});
     }
     else  {
