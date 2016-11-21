@@ -1,0 +1,32 @@
+<div class="jumbotron">
+	<div class="col-lg-12">
+		<div>
+			<table class="table table-bordered table-hover">
+				<thead>User Access</thead>
+				<th>Username</th>
+				<th>Subsystem</th>
+				<th>Create</th>
+				<th>Read</th>
+				<th>Update</th>
+				<th>Delete</th>
+				<th>Created by</th>
+				<th>Created at</th>
+				<th>Updated by</th>
+				<th>Updated at</th>
+				<tr ng-repeat="x in access">
+					<td>{{x.USER_REF_ID}}</td>
+					<td>{{x.SS_REF_ID}}</td>
+					<td>{{x.ISCREATE}}</td>
+					<td>{{x.ISREAD}}</td>
+					<td>{{x.ISUPDATE}}</td>
+					<td>{{x.ISDELETE}}</td>
+					<td>{{x.TRACKING_INFO.CREATED_BY}}</td>
+					<td>{{x.TRACKING_INFO.CREATED_DATE | date:"h:mma MMM d, y"}}</td>
+					<td>{{x.TRACKING_INFO.UPDATED_BY}}</td>
+					<td>{{x.TRACKING_INFO.CREATED_BY}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+    <a href="#/acc-add" ng-show="authenticated">Add</a>
+</div>
