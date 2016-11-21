@@ -1,20 +1,27 @@
 <div class="jumbotron">
 	<div class="container">
-		<form ng-Submit="addTrans()">
+		<form ng-submit="addTrans()">
 			<div class="form-group">
 				<label>Transaction Type</label>
-				<input type="text" class="form-control" ng-model="">
+				<input type="text" class="form-control" ng-model="newTrans.transType">
 			</div>
 			<div class="form-group">
-				<label>Item</label>
-				<input type="text" class="form-control" ng-model="">
+				<label>Schedule Status</label>
+				<input type="text" class="form-control" ng-model="newTrans.status">
 			</div>
-			<!-- Need to be able to add multiple items -->
 			<div class="form-group">
-				<label>Customer ID</label>
-				<input type="text" class="form-control">
+				<label>Shipping Type</label>
+				<input type="text" class="form-control" ng-model="newTrans.shipType">
+			</div>
+			<div class="form-group">
+				<label>Total Cost</label>
+				<input type="number" class="form-control" ng-model="newTrans.total">
+			</div>
+			<div class="form-group">
+				<label>Delivery Status</label>
+				<input type="text" class="form-control" ng-model="newTrans.delivStatus">
 			</div>
 			<button type="submit" class="btn btn-default">Add</button>
 		</form>
 	</div>
-</div>f
+</div>

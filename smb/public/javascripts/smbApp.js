@@ -403,15 +403,17 @@ app.factory('invFactory', function($resource) {
 	return $resource('/inv/:id');
 });
 
-app.controller('invController', function(invFactory, $scope, $rootScope, $location) {
+app.controller('invController', function(invFactory, orderFactory, catFactory, $scope, $rootScope, $location) {
 	$scope.items = invFactory.query();
-	$scope.newItem = {name: '', condition: '', price: '', vendor: '', category: '', orderNum: '', created_at: ''};
+	$scope.orders = orderFactory.query();
+	$scope.categories = catFactory.query();
+	$scope.newItem = {name: '', condition: '', price: '', category: '', orderNum: '', created_at: ''};
 
 	$scope.addInv = function() {
 		$scope.newItem.created_at = Date.now();
 		invFactory.save($scope.newItem, function() {
 			$scope.items = invFactory.query();
-			$scope.newItem = {name: '', condition: '', price: '', vendor: '', category: '', orderNum: '', created_at: ''};
+			$scope.newItem = {name: '', condition: '', price: '', category: '', orderNum: '', created_at: ''};
 			$location.path('/inv');
 		});
 	};
@@ -445,18 +447,7 @@ app.controller('orderController', function(orderFactory, vendFactory, $scope, $r
 	$scope.orders = orderFactory.query();
 	$scope.vendors = vendFactory.query();
 	$scope.newOrder = {vendor: '', item: '', street: '', city: '', state: '', shipping: '', receipt: '', created_at: ''};
-	$scope.items = [{id: 'choice1'}];
-
-	$scope.addItem = function() {
-		var newItem = $scope.items.length+1;
-		$scope.items.push({'id':'choice' + newItem});
-	};
-
-	$scope.removeItem = function() {
-		var lastItem = $scope.items.length-1;
-		$scope.items.splice(lastItem);
-	};
-
+	
 	$scope.addOrder = function() {
 		$scope.newOrder.created_at = Date.now();
 		orderFactory.save($scope.newOrder, function() {
@@ -475,13 +466,13 @@ app.factory('transFactory', function($resource) {
 
 app.controller('transController', function(transFactory, $scope, $rootScope, $location) {
 	$scope.transactions = transFactory.query();
-	$scope.newTrans = {title: '', created_at: ''};
+	$scope.newTrans = {transType: '', status: '', shipType: '', total: '', delivStatus: '', created_date: ''};
 
 	$scope.addTrans = function() {
-		$scope.newJob.created_at = Date.now();
+		$scope.newTrans.created_at = Date.now();
 		transFactory.save($scope.newTrans, function() {
-			$scope.transactions = jobFactory.query();
-			$scope.newTrans = {title: '', created_at: ''};
+			$scope.transactions = transFactory.query();
+			$scope.newTrans = {transType: '', status: '', shipType: '', total: '', delivStatus: '', created_at: ''};
 			$location.path('/trans');
 		});
 	};

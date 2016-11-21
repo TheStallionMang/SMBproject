@@ -3,6 +3,7 @@
         <div>
             <table class="table table-bordered table-hover">
                 <thead>Transactions</thead>
+                <th>Transaction ID</th>
                 <th>Transaction Type</th>
                 <th>Schedule Status</th>
                 <th>Shipping Type</th>
@@ -14,6 +15,7 @@
                 <th>Updated by</th>
                 <th>Updated at</th>
                 <tr ng-repeat="x in transactions">
+                    <td>{{x._id}}</td>
                     <td>{{x.TRANS_TYPE}}</td>
                     <td>{{x.SCHEDULE_STATUS}}</td>
                     <td>{{x.SHIPPING_TYPE}}</td>
@@ -21,7 +23,7 @@
                     <td>{{x.DELIVERY_STATUS}}</td>
                     <td>{{x.CUSTOMER_REF_ID}}</td>
                     <td>{{x.TRACKING_INFO.CREATED_BY}}</td>
-                    <td>{{x.TRACKING_INFO.CREATED_DATE}}</td>
+                    <td>{{x.TRACKING_INFO.CREATED_DATE | date:"h:mma MMM d, y"}}</td>
                     <td>{{x.TRACKING_INFO.UPDATED_BY}}</td>
                     <td>{{x.TRACKING_INFO.UPDATED_AT}}</td>
                 </tr>

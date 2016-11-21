@@ -26,25 +26,24 @@ router.route('/')
 
     	var transaction = new Transaction();
 
-    	transaction.TRANS_TYPE =
-    	transaction.SCHEDULE_STATUS = 
-    	transaction.QUANTITY =
-    	transaction.SHIPPING_TYPE =
-    	transaction.TOTAL_COST =
-    	transaction.DELIVERY_STATUS =
-    	transaction.INVENTORY_REF_ID =
-    	transaction.CUSTOMER_REF_ID = 
-    	transaction.TRACKING_INFO.CREATED_BY =
-        transaction.TRACKING_INFO.CREATED_DATE =
-        transaction.TRACKING_INFO.UPDATED_BY =
-        transaction.TRACKING_INFO.UPDATED_DATE =
+    	transaction.TRANS_TYPE = req.body.transType;
+    	transaction.SCHEDULE_STATUS = req.body.status;
+    	//transaction.QUANTITY = 
+    	transaction.SHIPPING_TYPE = req.body.shipType;
+    	transaction.TOTAL_COST = req.body.total;
+    	transaction.DELIVERY_STATUS = req.body.delivStatus;
+    	//transaction.INVENTORY_REF_ID =
+    	//transaction.CUSTOMER_REF_ID = 
+    	transaction.TRACKING_INFO.CREATED_BY = req.body.created_by;
+        transaction.TRACKING_INFO.CREATED_DATE = req.body.created_at;
+        transaction.TRACKING_INFO.UPDATED_BY = req.body.updated_by;
+        transaction.TRACKING_INFO.UPDATED_DATE = req.body.updated_at;
 
-        transaction.save(function(err, post) {
+        transaction.save(function(err, transaction) {
         	if(err) {
         		return res.send(500, err);
-        	} else {
-        		return res.json(transaction);
         	}
+        	return res.json(transaction);
         });
     })
 
