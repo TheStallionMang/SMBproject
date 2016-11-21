@@ -1,0 +1,10 @@
+[00:48:44] I/hosted - Using the selenium server at http://localhost:4444/wd/hub
+[00:48:44] I/launcher - Running 1 instances of WebDriver
+
+    Protractor Demo App Creating a new Employee:   ․ Protractor Demo App Creating a new Employee: 1636ms
+    Protractor Demo App Creating access for the Employees:   ․ Protractor Demo App Creating access for the Employees: 1171ms
+
+  2 passing (3s)
+
+[00:48:49] I/launcher - 0 instance(s) of WebDriver still running
+[00:48:49] I/launcher - chrome #01 passed
