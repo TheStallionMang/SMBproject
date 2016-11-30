@@ -1,5 +1,39 @@
 <div class="jumbotron">
 	<div class="container">
 		<h2>Dashboard</h2>
+		<div class="col-md-4">
+			<div>
+				<table class="table table-bordered table-hover">
+					<thead>Orders needing Approval</thead>
+					<th>Order #</th>
+					<th>Total Cost</th>
+					<th>Approved</th>
+					<th>Employee</th>
+					<tr ng-repeat="x in orders">
+						<td>{{x._id}}</td>
+						<td>{{x.TOTAL_COST}}</td>
+						<td>{{x.IS_APPROVED}}</td>
+						<td>{{x.EMP_REF_ID}}</td>
+					</tr>
+				</table>
+			</div>
+    	</div>
+		<div class="col-md-4">
+			<div>
+				<table class="table table-bordered table-hover">
+					<thead>Orders needing Approval</thead>
+					<th>Order #</th>
+					<th>Total Cost</th>
+					<th>Approved</th>
+					<th>Employee</th>
+					<tr ng-repeat="x in orders">
+						<td>{{x._id}}</td>
+						<td>{{x.TOTAL_COST}}</td>
+						<td>{{x.IS_APPROVED}}</td>
+						<td>{{x.EMP_REF_ID}}</td>
+					</tr>
+				</table>
+			</div>
+    	</div><br>
 	</div>
 </div>

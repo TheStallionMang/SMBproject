@@ -1,6 +1,12 @@
 <div class="jumbotron">
 	<div class="container">
 		<form ng-Submit="addInv()">
+			<!-- IMAGE
+			<div class="form-group">
+				<label>Image</label>
+				<input type="file" ng-model="newItem.img">
+			</div>
+			-->
 			<div class="form-group">
 			  <label for="sel1">Order Associated With Item</label>
 			  <select class="form-control" id="sel1" ng-model="newItem.orderNum">
@@ -8,11 +14,16 @@
 			  </select>
 			</div>
 			<div class="form-group">
+				<label>Image URL</label>
+				<input type="text" class="form-control" ng-model="newItem.img">
+			</div>
+			<div class="form-group">
 				<label>Name</label>
 				<input type="text" class="form-control" ng-model="newItem.name">
 			</div>
 			<div class="form-group">
 			  <label for="sel1">Category</label>
+				<a href="#/cat-add" ng-show="authenticated"><font size="1">(Add a Category)</font></a>
 			  <select class="form-control" id="sel1" ng-model="newItem.category">
 			    <option ng-repeat="x in categories">{{x.CATEGORY}}</option>
 			  </select>

@@ -15,6 +15,7 @@
 			</div>
 			<div class="form-group">
 			  <label for="sel1">Position</label>
+				<a href="#/job-add" ng-show="authenticated"><font size="1">(Add a Position)</font></a>
 			  <select class="form-control" id="sel1" ng-model="newEmp.position">
 			    <option ng-repeat="x in positions">{{x.JOB_TITLE}}</option>
 			  </select>

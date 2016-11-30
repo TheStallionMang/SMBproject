@@ -16,9 +16,10 @@ var app = angular.module('smbApp', ['ngRoute', 'ngResource']).run(function($root
   	};
 
   	$rootScope.loggedIn();
-	
+	/*
 	$rootScope.authenticated = false;
 	$rootScope.current_user = '';
+	*/
 
 	$rootScope.signout = function() {
 		$http.get('auth/signout');
@@ -55,13 +56,13 @@ app.config(function($routeProvider) {
 	// Dashboard
 	.when('/dash', {
 		templateUrl: 'dashboard.html',
-		controller: 'mainController'
+		controller: 'dashController'
 	})
 
 	// Contact Page
 	.when('/cont', {
 		templateUrl: 'contact.html',
-		controller: 'mainController'
+		controller: 'contController'
 	})
 
 	/*	
@@ -278,6 +279,14 @@ app.config(function($routeProvider) {
 	});
 });
 
+app.controller('dashController', function(orderFactory, $scope) {
+	$scope.orders = orderFactory.query();
+
+});
+app.controller('contController', function($scope) {
+
+});
+
 // Authentication Controller
 
 app.controller('authController', function($scope, $http, $rootScope, $location) {
@@ -289,7 +298,7 @@ app.controller('authController', function($scope, $http, $rootScope, $location) 
 			if(data.state == 'success') {
 				$rootScope.authenticated = true;
 				$rootScope.current_user = data.user.USERNAME;
-				$location.path('/');
+				$location.path('/dash');
 			} else {
 				$scope.error_message = data.message;
 			}
@@ -301,7 +310,7 @@ app.controller('authController', function($scope, $http, $rootScope, $location) 
 			if(data.state == 'success') {
 				$rootScope.authenticated = true;
 				$rootScope.current_user = data.user.USERNAME;
-				$location.path('/');
+				$location.path('/dash');
 			} else {
 				$scope.error_message = data.message;
 			}
@@ -416,7 +425,7 @@ app.controller('invController', function(invFactory, orderFactory, catFactory, $
 	$scope.items = invFactory.query();
 	$scope.orders = orderFactory.query();
 	$scope.categories = catFactory.query();
-	$scope.newItem = {name: '', condition: '', price: '', category: '', orderNum: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
+	$scope.newItem = {img: '', name: '', condition: '', price: '', category: '', orderNum: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 
 	$scope.addInv = function() {
 		$scope.newItem.created_at = Date.now();
@@ -425,7 +434,7 @@ app.controller('invController', function(invFactory, orderFactory, catFactory, $
 		$scope.newItem.updated_at = Date.now();
 		invFactory.save($scope.newItem, function() {
 			$scope.items = invFactory.query();
-			$scope.newItem = {name: '', condition: '', price: '', category: '', orderNum: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
+			$scope.newItem = {img: '', name: '', condition: '', price: '', category: '', orderNum: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 			$location.path('/inv');
 		});
 	};

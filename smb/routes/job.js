@@ -4,10 +4,7 @@ var mongoose = require('mongoose');
 var Job = mongoose.model('Job');
 
 router.use(function(req, res, next) {
-	if (req.method === "GET") {
-		//continue to the next middleware or request handler
-		return next();
-	}
+
 	if (!req.isAuthenticated()) {
 		//user not authenticates, redirect to login
 		return res.redirect('/#login');
@@ -29,7 +26,7 @@ router.route('/')
     	job.TRACKING_INFO.CREATED_BY = req.body.created_by;
         job.TRACKING_INFO.CREATED_DATE = req.body.created_at;
         job.TRACKING_INFO.UPDATED_BY = req.body.updated_by;
-        job.TRACKING_INFO.UPDATED_DATE = req.body.updated_by;
+        job.TRACKING_INFO.UPDATED_DATE = req.body.updated_at;
 
         job.save(function(err, job) {
         	if(err) {

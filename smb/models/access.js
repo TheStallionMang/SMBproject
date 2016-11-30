@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var autoIncrement = require('mongoose-auto-increment');
 
-var connection = mongoose.createConnection('mongodb://localhost/testlogin');
+var connection = mongoose.createConnection('mongodb://admin:admin123@ds111718.mlab.com:11718/smb');
 
 autoIncrement.initialize(connection);
 

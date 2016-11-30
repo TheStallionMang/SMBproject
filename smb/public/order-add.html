@@ -3,6 +3,7 @@
 		<form ng-submit="addOrder()">
 			<div class="form-group">
 			  <label for="sel1">Vendor</label>
+				<a href="#/vend-add" ng-show="authenticated"><font size="1">(Add a Vendor)</font></a>
 			  <select class="form-control" id="sel1" ng-model="newOrder.vendor">
 			    <option ng-repeat="x in vendors">{{x.NAME}}</option>
 			  </select>
