@@ -15,7 +15,7 @@ var app = angular.module('smbApp', ['ngRoute', 'ngResource']).run(function($root
     	});
   	};
 
-  	// $rootScope.loggedIn();
+  	$rootScope.loggedIn();
 	
 	$rootScope.authenticated = false;
 	$rootScope.current_user = '';
@@ -55,7 +55,7 @@ app.config(function($routeProvider) {
 	// Dashboard
 	.when('/dash', {
 		templateUrl: 'dashboard.html',
-		controller: 'mainController'
+		controller: 'dashController'
 	})
 
 	// Contact Page
@@ -291,7 +291,7 @@ app.controller('authController', function($scope, $http, $rootScope, $location) 
 			if(data.state == 'success') {
 				$rootScope.authenticated = true;
 				$rootScope.current_user = data.user.USERNAME;
-				$location.path('/');
+				$location.path('/dash');
 			} else {
 				$scope.error_message = data.message;
 			}
@@ -400,6 +400,13 @@ app.controller('empController', function(empFactory, jobFactory, $scope, $rootSc
 	};
 });
 
+// Dash Controller
+
+app.controller('dashController', function(orderFactory, empFactory, $scope, $rootScope, $location) {
+	$scope.orders = orderFactory.query();
+	$scope.employees = empFactory.query();
+	
+});
 
 // Inventory Controller
 app.factory('invFactory', function($resource) {
@@ -410,14 +417,14 @@ app.controller('invController', function(invFactory, orderFactory, catFactory, $
 	$scope.items = invFactory.query();
 	$scope.orders = orderFactory.query();
 	$scope.categories = catFactory.query();
-	$scope.newItem = {name: '', condition: '', price: '', category: '', orderNum: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
+	$scope.newItem = {img: '', name: '', condition: '', price: '', category: '', orderNum: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 
 	$scope.addInv = function() {
 		$scope.newItem.created_at = Date.now();
 		$scope.newItem.created_by = $rootScope.current_user;
 		invFactory.save($scope.newItem, function() {
 			$scope.items = invFactory.query();
-			$scope.newItem = {name: '', condition: '', price: '', category: '', orderNum: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
+			$scope.newItem = {img: '', name: '', condition: '', price: '', category: '', orderNum: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 			$location.path('/inv');
 		});
 	};

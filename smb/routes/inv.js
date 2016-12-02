@@ -30,6 +30,7 @@ router.route('/')
         item.NAME = req.body.name;
         item.CONDITION = req.body.condition;
         item.UNIT_PRICE = req.body.price;
+        item.IMG_URL = req.body.img;
         //item.VENDOR_REF_ID = vendor;
         item.CATEGORY_REF_ID = req.body.category;
         item.VENDOR_ORDER_REF_ID = req.body.orderNum;

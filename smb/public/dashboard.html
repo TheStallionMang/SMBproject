@@ -1,5 +1,40 @@
 <div class="jumbotron">
 	<div class="container">
 		<h2>Dashboard</h2>
+		<div class="col-md-4">
+        <div>
+            <table class="table table-bordered table-hover">
+                <thead>Orders pending approval</thead>
+                <!--<a href="#/order-add" ng-show="authenticated">+</a> -->
+                <th>Order #</th>
+                <th>Total Cost</th>
+                <th>Approved</th>
+                <th>Employee</th>
+                <tr ng-repeat="x in orders">
+                    <td>{{x._id}}</td>
+                    <td>{{x.TOTAL_COST}}</td>
+                    <td>{{x.IS_APPROVED}}</td>
+                    <td>{{x.EMP_REF_ID}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+	<div class="col-md-4">
+		<div>
+			<table class="table table-bordered table-hover">
+				<thead><a href="#/emp">Employee</a></thead>
+				<th>Employee ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Position</th>
+				<tr ng-repeat="x in employees">
+					<td>{{x.EMP_ID}}</td>
+					<td>{{x.FNAME}}</td>
+					<td>{{x.LNAME}}</td>
+					<td>{{x.JOB_ID}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 	</div>
 </div>

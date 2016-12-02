@@ -44,13 +44,25 @@
               </div>
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a class="navbar-right" href="#/inv">Inventory</a></li>
-                  <li><a href="#/order" ng-show="authenticated">Order</a></li>
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopop="true" aria-expanded="false">Inventory<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li ><a href="#/inv">View</a></li>
+                        <li><a ng-show="authenticated" href="#/inv-add">Add</a></li>
+                      </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopop="true" aria-expanded="false" ng-show="authenticated">Orders<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#/order">View</a></li>
+                        <li><a href="#/order-add">Add</a></li>
+                      </ul>
+                  </li>
                   <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopop="true" aria-expanded="false" ng-show="authenticated">Signed is as {{current_user}}<span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                        <li><a href="">Dashboard</a></li>
-                        <li><a href="">Settings</a></li>
+                        <li><a href="#/dash">Dashboard</a></li>
+                        <!--<li><a href="">Settings</a></li> -->
                         <li><a href="#/" ng-show="authenticated" ng-click="signout()">Logout</a></li>
                       </ul>
                   </li>
@@ -66,8 +78,8 @@
         <hr>
         <footer>
           <p>&copy; 2016 Company, Inc.</p>
-          <a href="#/login" ng-hide="authenticated">Employee Login</a>
-          <a href="#/register" ng-hide="authenticated">Employee Register</a>
+          <p><a href="#/login" ng-hide="authenticated">Employee Login</a></p>
+          <p><a href="#/register" ng-hide="authenticated">Employee Register</a></p>
         </footer>
     </body>
 </html>

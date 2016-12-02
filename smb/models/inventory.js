@@ -5,6 +5,7 @@ var inventory = new mongoose.Schema({
 	NAME: String,
 	CONDITION: String,
 	UNIT_PRICE: Number,
+	IMG_URL: String,
 	VENDOR_REF_ID : {
 		type: String,
 		ref: 'Vendor'
