@@ -1,28 +1,33 @@
 <div class="jumbotron">
 	<div class="container">
-		<form ng-submit="addOrder()">
+		<form name="orderForm">
 			<div class="form-group">
 			  <label for="sel1">Vendor</label>
 			  <select class="form-control" id="sel1" ng-model="newOrder.vendor">
-			    <option ng-repeat="x in vendors">{{x.NAME}}</option>
+			    <option ng-repeat="x in vendors" value="{{x._id}}">{{x.NAME}}</option>
 			  </select>
 			</div>
 			<div class="form-group">
 				<label>Items</label>
-				<input type="text" class="form-control" ng-model="newOrder.Item">
+				<input type="text" placeholder="Name" ng-model="itemToAdd.item" required />
+			    <input type="number" placeholder="Quantity" ng-model="itemToAdd.quantity" name = quantity required />
+			    <button ng-click="add(itemToAdd)" type="reset" value="Reset"  ng-disabled="orderForm.$invalid" class="btn btn-default"> Add</button>
 			</div>
+		  <div ng-repeat="item in items">
+    			{{item.quantity}} * {{item.item}}
+ 			</div>
 			<!-- Need to be able to add multiple items -->
 			<div class="form-group">
 				<label>Address Street</label>
-				<input type="text" class="form-control" ng-model="newOrder.street" value="123 Example St">
+				<input type="text" class="form-control" ng-model="newOrder.street">
 			</div>
 			<div class="form-group">
 				<label>Address City</label>
-				<input type="text" class="form-control" ng-model="newOrder.city" value="San Diego">
+				<input type="text" class="form-control" ng-model="newOrder.city">
 			</div>
 			<div class="form-group">
 				<label>Address State</label>
-				<input type="text" class="form-control" ng-model="newOrder.state" value="CA">
+				<input type="text" class="form-control" ng-model="newOrder.state">
 			</div>
 			<div class="form-group">
 				<label>Shipping Type</label>
@@ -32,7 +37,8 @@
 				<label>Desired Receipt Date</label>
 				<input type="text" class="form-control" ng-model="newOrder.receipt">
 			</div>
-				<button type="submit" class="btn btn-default">Add</button>
+				<button ng-click="addOrder()" class="btn btn-default">Add</button>
 		</form>
 	</div>
+
 </div>

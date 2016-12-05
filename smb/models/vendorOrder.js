@@ -3,10 +3,10 @@ var autoIncrement = require('mongoose-auto-increment');
 
 var vendorOrder = new mongoose.Schema({
 
-	ORDER_DETAILS: [{
+	ORDER_DETAILS: [new mongoose.Schema({
 		ITEM: String,
-		QUANTITY: Number
-	}],
+		QUANTITY: String
+	}, {strict: false})],
 	DELIVERY_ADDRESS: {
 		STREET:String,
 		CITY:String,
@@ -46,6 +46,6 @@ var vendorOrder = new mongoose.Schema({
 			default: Date.now
 		}
 	}
-});
+}, {strict: false});
 vendorOrder.plugin(autoIncrement.plugin, 'Order');
 mongoose.model('Order', vendorOrder);

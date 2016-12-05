@@ -398,6 +398,10 @@ app.controller('empController', function(empFactory, jobFactory, $scope, $rootSc
 			$location.path('/emp');
 		});
 	};
+	$scope.goToEmp = function(x) {
+		$rootScope.emp = x;
+		$location.path('/emp-detail');
+	};
 });
 
 // Dash Controller
@@ -405,6 +409,16 @@ app.controller('empController', function(empFactory, jobFactory, $scope, $rootSc
 app.controller('dashController', function(orderFactory, empFactory, $scope, $rootScope, $location) {
 	$scope.orders = orderFactory.query();
 	$scope.employees = empFactory.query();
+
+	$scope.go = function(x) {
+		$rootScope.order = x;
+		$rootScope.orderdetails = x.ORDER_DETAILS;
+		$location.path('/order-detail');
+	};
+	$scope.goToEmp = function(x) {
+		$rootScope.emp = x;
+		$location.path('/emp-detail');
+	};
 	
 });
 
@@ -427,6 +441,10 @@ app.controller('invController', function(invFactory, orderFactory, catFactory, $
 			$scope.newItem = {img: '', name: '', condition: '', price: '', category: '', orderNum: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 			$location.path('/inv');
 		});
+	};
+	$scope.go = function(x) {
+		$rootScope.item = x;
+		$location.path('/inv-detail');
 	};
 });
 
@@ -454,20 +472,58 @@ app.controller('jobController', function(jobFactory, $scope, $rootScope, $locati
 app.factory('orderFactory', function($resource) {
 	return $resource('/order/:id');
 });
+//service factory, pass vendnr
+app.factory('theService', function() {  
+    return {
+        vendnr: ''
+    };
+});
 
-app.controller('orderController', function(orderFactory, vendFactory, $scope, $rootScope, $location) {
+
+app.controller('orderController', function(theService, orderFactory, vendFactory, $scope, $rootScope, $location) {
+  $scope.items = [];
+  $scope.itemsToAdd = [{
+    item: '',
+    quantity: ''
+  }];
+
+  $scope.add = function(itemToAdd) {
+  	if(!(itemToAdd.quantity > 0) || itemToAdd.item == ''){
+  		return;
+  	}
+	    var index = $scope.itemsToAdd.indexOf(itemToAdd);
+
+	    $scope.itemsToAdd.splice(index, 1);
+
+	    $scope.items.push(angular.copy(itemToAdd));
+	    $scope.itemsToAdd = [{
+	    item: '',
+	    quantity: ''
+	      }];
+  }
+
 	$scope.orders = orderFactory.query();
 	$scope.vendors = vendFactory.query();
-	$scope.newOrder = {vendor: '', item: '', street: '', city: '', state: '', shipping: '', receipt: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
+	$scope.newOrder = {vendor: '', item: [], quantity: '', street: '', city: '', state: '', shipping: '', receipt: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 	
 	$scope.addOrder = function() {
+		$scope.newOrder.item = $scope.items;
 		$scope.newOrder.created_at = Date.now();
 		$scope.newOrder.created_by = $rootScope.current_user;
 		orderFactory.save($scope.newOrder, function() {
 			$scope.orders = orderFactory.query();
-			$scope.newOrder = {vendor: '', item: '', street: '', city: '', state: '', shipping: '', receipt: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
+			$scope.newOrder = {vendor: '', item:  [], quantity: '', street: '', city: '', state: '', shipping: '', receipt: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 			$location.path('/order');
 		});
+	};
+	$scope.go = function(x) {
+		$rootScope.order = x;
+		$rootScope.orderdetails = x.ORDER_DETAILS;
+		$location.path('/order-detail');
+	};
+	$scope.getvendor = function(vendnr) {
+		theService.vendnr = vendnr;
+
 	};
 });
 
@@ -512,13 +568,18 @@ app.controller('userController', function(userFactory, $scope, $rootScope, $loca
 	};
 });
 
+app.factory('vendFactory', ['$resource', function($resource) {
+	return $resource('/vend/:id', {id:"@id"}, {
+                query: {
+                    method: 'GET',
+                    isArray: true
+                }})
+}]);
 
-// Vendor Controller
-app.factory('vendFactory', function($resource) {
-	return $resource('/vend/:id');
-});
-
-app.controller('vendController', function(vendFactory, $scope, $rootScope, $location) {
+app.controller('vendController', function($resource, theService, vendFactory, $scope, $rootScope, $location) {
+	$scope.vendnr = theService.vendnr;
+	$scope.newVendor = {name: '', street: '', city: '', state: '', status: '', website: '', comments: '', email: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
+	$scope.currentVendor = vendFactory.get({ id:$scope.vendnr });
 	$scope.vendors = vendFactory.query();
 	$scope.newVendor = {name: '', street: '', city: '', state: '', status: '', website: '', comments: '', email: '', created_by: '', created_at: '', updated_by: '', updated_at: ''};
 

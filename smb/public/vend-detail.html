@@ -10,17 +10,19 @@
 		<table class="table">
 			<tr>
 				<th>Vendor</th>
-				<th>Product</th>
-				<th>Quantity</th>
-				<th>Price</th>
-				<th>Employee</th>
+				<th>Adress</th>
+				<th>Status</th>
+				<th>Website</th>
+				<th>Comments</th>
+				<th>Email</th>
 			</tr>
 			<tr>
-				<th>Santa Cruz</th>
-				<th><a href="#/inv-detail">Example Mountain Bike</a></th>
-				<th>10</th>
-				<th>$10.00</th>
-				<th>Smith</th>
+				<th>{{currentVendor.NAME}}</th>
+				<th>{{currentVendor.ADDRESS.STREET}} {{currentVendor.ADDRESS.CITY}}, {{currentVendor.ADDRESS.STATE}}</th>
+				<th>{{currentVendor.V_STATUS}}</th>
+				<th><a ng-href="{{currentVendor.WEBSITE}}">{{currentVendor.WEBSITE}}</a></th>
+				<th>{{currentVendor.COMMENTS}}</th>
+				<th>{{currentVendor.EMAIL}}</th>
 				</tr>
 		</table>
 	</div>

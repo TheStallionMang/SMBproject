@@ -23,11 +23,10 @@ router.route('/')
 
     // create a new order
     .post(function(req,res) {
-
+        var dataRes = JSON.stringify(req.body.item.item);
     	var order = new Order();
-
-    	order.ORDER_DETAILS = req.body.item;
-    	order.DELIVERY_ADDRESS.STREET = req.body.street;
+        order.ORDER_DETAILS = req.body.item;
+    	order.DELIVERY_ADDRESS.STREET = req.body.STREET;
     	order.DELIVERY_ADDRESS.CITY = req.body.city;
     	order.DELIVERY_ADDRESS.STATE = req.body.state;
     	order.SHIPPING_TYPE = req.body.shipping;
@@ -94,7 +93,9 @@ router.route('/:id')
     })
 
     .get(function(req,res) {
+                    console.log("not good111");
         Order.findById(req.params.id, function(err, order) {
+                        console.log("not good");
             if(err) {
                 return res.send(err);
             }

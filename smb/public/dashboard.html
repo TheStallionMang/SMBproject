@@ -10,7 +10,7 @@
                 <th>Total Cost</th>
                 <th>Approved</th>
                 <th>Employee</th>
-                <tr ng-repeat="x in orders">
+                <tr ng-repeat="x in orders" ng-click="go(x)">
                     <td>{{x._id}}</td>
                     <td>{{x.TOTAL_COST}}</td>
                     <td>{{x.IS_APPROVED}}</td>
@@ -27,7 +27,7 @@
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Position</th>
-				<tr ng-repeat="x in employees">
+				<tr ng-repeat="x in employees" ng-click="goToEmp(x)">
 					<td>{{x.EMP_ID}}</td>
 					<td>{{x.FNAME}}</td>
 					<td>{{x.LNAME}}</td>

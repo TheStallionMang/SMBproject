@@ -12,7 +12,7 @@
 				<th>Created at</th>
 				<th>Updated by</th>
 				<th>Updated at</th>
-				<tr ng-repeat="x in employees">
+				<tr ng-repeat="x in employees" ng-click="goToEmp(x)">
 					<td>{{x.EMP_ID}}</td>
 					<td>{{x.FNAME}}</td>
 					<td>{{x.LNAME}}</td>

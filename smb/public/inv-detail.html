@@ -1,5 +1,5 @@
 <div class="jumbotron">
-<img src="images/example-mountain-bike.jpg" alt="..." height="250px" width="250px">
+<img src="{{item.IMG_URL}}" alt="..." height="250px" width="250px">
 	<div class="container-fluid pull-right">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -14,14 +14,16 @@
 					<th>Product</th>
 					<th>Quantity</th>
 					<th>Price</th>
+					<th>Condition</th>
 					<th>Employee</th>
 				</tr>
-				<tr>
-					<th><a href="#/vend-detail">Santa Cruz</a></th>
-					<th>Example Mountain Bike</th>
+				<tr >
+					<th><a href="#/vend-detail">{{item.VENDOR_REF_ID}}</a></th>
+					<th>{{item.NAME}}</th>
 					<th>10</th>
-					<th>$10.00</th>
-					<th>Smith</th>
+					<th>${{item.UNIT_PRICE}}</th>
+					<th>{{item.CONDITION}}</th>
+					<th>{{item.TRACKING_INFO.CREATED_BY}}</th>
 				</tr>
 			</table>
 		</div>
